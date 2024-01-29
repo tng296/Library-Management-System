@@ -1,7 +1,28 @@
-const passwordValidationRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.*[0-9]).{8,}$/
+const passwordLength = 8
+const passwordUppercase = /[A-Z]/
+const passwordSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/
+const passwordIsNumber = /[0-9]/
+const PasswordValidation = (password: string) => {
+    if (password.length < passwordLength) {
+        return false
+    }
 
-const passwordValidation = (password: string) => {
-    return passwordValidationRegex.test(password);
+    if (!passwordUppercase.test(password)) {
+        return false
+    }
+
+
+    if (!passwordSpecialCharacter.test(password)) {
+        return false
+    }
+
+    if (!passwordIsNumber.test(password)) {
+        return false
+    }
+
+    return true
 }
 
-export default passwordValidation;
+
+
+export default PasswordValidation
