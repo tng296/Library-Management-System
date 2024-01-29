@@ -1,0 +1,65 @@
+/* FILEPATH: /Users/vincentnguyen/Senior Project Warehouse/frontend-css/AdminLoginPage.css */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: darkgray;
+}
+
+.login-page-container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333;
+    color: #fff;
+}
+
+.login-container {
+    text-align: center;
+}
+
+.form-control {
+    position: relative;
+    margin: 10px 0;
+}
+
+input {
+    margin: 5px;
+    padding: 8px;
+}
+
+button {
+    margin: 10px;
+    padding: 8px;
+}
+
+.register-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.register-link p {
+    color: #fff;
+}
+
+.register-link a {
+    color: black;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
