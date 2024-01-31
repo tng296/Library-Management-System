@@ -15,7 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: darkgray;
+    background: #333;
 }
 
 .login-page-container {
@@ -52,11 +52,11 @@ button {
 }
 
 .register-link p {
-    color: #fff;
+    color: black;
 }
 
 .register-link a {
-    color: black;
+    color: darkblue;
     text-decoration: none;
 }
 

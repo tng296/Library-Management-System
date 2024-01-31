@@ -9,8 +9,7 @@ import AdminRegisterPage from '/Users/vincentnguyen/Developer/Senior-Project/sen
 function App() {
   return (
     <div className="app-container">
-      <Header />
-      <AdminLoginPage />
+      <AdminRegisterPage />
     </div>
   )
 }

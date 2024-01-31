@@ -17,7 +17,7 @@ const AdminLoginPage: React.FC = () => {
         setLogin({ ...login, [e.target.name]: e.target.value });
     }
 
-    const submitLoginCredentials = async (e: React.FormEvent<HTMLFormElement>) => {
+    const submitLoginCredentials = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         try {
             const response = await axios.post('url go here', login);

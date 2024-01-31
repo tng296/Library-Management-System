@@ -54,7 +54,7 @@ const AdminRegisterPage: React.FC = () => {
 
     return (
         <div className="login-container">
-            <h1>Login</h1>
+            <h1>Register</h1>
             <form action="">
                 <div className="form-control">
                     <input onChange={handleRegister} type="text" placeholder="username" name="newUsername" />
