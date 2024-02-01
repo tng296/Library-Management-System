@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 
 import { fetchAllUser } from '../services/UserService';
 
@@ -26,6 +27,8 @@ const TableUsers: React.FC = (props) => {
     }
 
     console.log(listUser);
+
+    const handlePageClick = () => { }
 
     return (
         <>
