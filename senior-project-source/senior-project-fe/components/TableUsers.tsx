@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
+import ModalAddNew from './ModalAddNew';
 
 import { fetchAllUser } from '../services/UserService';
 
@@ -17,9 +18,15 @@ const TableUsers: React.FC = (props) => {
     useEffect(() => {
         getUsers();
     }, []);
-
+    const [isShownModalAddNew, setIsShownModalAddNew] = useState(false);
+    const handleClose = () => {
+        setIsShownModalAddNew(false);
+    }
+    const handleAddingNewUser = (user: User) => {
+        setListUser([user, ...listUser]);
+    }
     const getUsers = async () => {
-        let res = await fetchAllUser();
+        let res = await fetchAllUser(1);
         console.log(">>>check new re:", res);
         if (res && res.data) {
             setListUser(res.data);
@@ -32,7 +39,14 @@ const TableUsers: React.FC = (props) => {
 
     return (
         <>
+            <div className="my-3 add-new">
+                <span>
+                    <b>List User:</b>
+                </span>
+                <button className="btn btn-primary" onClick={() => setIsShownModalAddNew(true)}>Add new user</button>
+            </div>
             {/* Table component */}
+
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -60,6 +74,9 @@ const TableUsers: React.FC = (props) => {
                     })}
                 </tbody>
             </Table>
+
+            <ModalAddNew show={isShownModalAddNew} handleClose={handleClose} handleAddingNewUser={handleAddingNewUser} />
+
         </>
     );
 };

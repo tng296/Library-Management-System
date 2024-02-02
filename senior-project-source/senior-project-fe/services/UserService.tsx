@@ -1,7 +1,10 @@
 import axios from './customizedAxios';
 
 
-const fetchAllUser = () => {
-    return axios.get("/api/users?page=2");
+const fetchAllUser = (page: number) => {
+    return axios.get("/api/users?page=" + page);
 }
-export { fetchAllUser }
+const postUser = (email: string, password: string) => {
+    return axios.post("/api/users", { email, password });
+}
+export { fetchAllUser, postUser }

@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
+import { postUser } from '../services/UserService';
+import { toast } from 'react-toastify';
 
-const ModalAddNew: React.FC<ModalAddNew> = (props) => {
+const ModalAddNew: React.FC = (props) => {
     interface ModalAddNewProps {
         show: boolean;
         handleClose: () => void;
+        handleAddingNewUser: (user: any) => void; // Add handleAddingNewUser property
     }
 
-    const { show, handleClose } = props as ModalAddNewProps;
+    const { show, handleClose, handleAddingNewUser } = props as ModalAddNewProps; // Remove handleAddingNewUser declaration
+
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
@@ -18,6 +21,20 @@ const ModalAddNew: React.FC<ModalAddNew> = (props) => {
     }
     const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
+    }
+
+    const handleSaveUser = async () => {
+        let res = await postUser(email, password);
+        if (res && res.id) {
+            handleClose();
+            setEmail('');
+            setPassword('');
+            toast.success("Add new user successfully");
+            handleAddingNewUser({ id: res.id, email: email, first_name: name });
+        }
+        else {
+            toast.error("Add new user failed");
+        }
     }
 
     return (
@@ -35,7 +52,7 @@ const ModalAddNew: React.FC<ModalAddNew> = (props) => {
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
-                                <input type="password" className="form-control" placeholder="Password" value={password} onChange={handleEmail} />
+                                <input type="password" className="form-control" placeholder="Password" value={password} onChange={handlePassword} />
                             </div>
                         </div>
                     </div></Modal.Body>
@@ -43,7 +60,7 @@ const ModalAddNew: React.FC<ModalAddNew> = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleSaveUser}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

@@ -6,28 +6,31 @@ import Container from 'react-bootstrap/Container';
 import AdminLoginPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/AdminLoginPage.tsx'
 import AdminRegisterPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/AdminRegisterPage.tsx'
 import ModalAddNew from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/ModalAddNew.tsx'
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
-  const [isShownModalAddNew, setIsShownModalAddNew] = useState(false);
-  const handleClose = () => {
-    setIsShownModalAddNew(false);
-  }
   return (
-    <div className="app-container">
-      <Header />
-      <Container>
-        <div className="my-3 add-new">
-          <span>
-            <b>List User:</b>
-          </span>
-          <button className="btn btn-primary" onClick={() => setIsShownModalAddNew(true)}>Add new user</button>
-        </div>
-        <TableUsers />
-      </Container>
-      <ModalAddNew show={isShownModalAddNew} handleClose={handleClose} />
-    </div>
-  )
+    <>
+      <div className="app-container">
+        <Header />
+        <Container>
+          <TableUsers />
+        </Container>
+      </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
+  );
 }
 
 export default App
