@@ -7,12 +7,13 @@ import AdminLoginPage from '/Users/vincentnguyen/Developer/Senior-Project/senior
 import AdminRegisterPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/AdminRegisterPage.tsx'
 import ModalAddNew from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/ModalAddNew.tsx'
 import { ToastContainer, toast } from 'react-toastify';
+import LandingPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/LandingPage.tsx'
 
 
 function App() {
   return (
     <>
-      <div className="app-container">
+      {/* <div className="app-container">
         <Header />
         <Container>
           <TableUsers />
@@ -28,7 +29,9 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
+      <Header />
+      <LandingPage />
     </>
   );
 }
