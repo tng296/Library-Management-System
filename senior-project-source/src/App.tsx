@@ -8,7 +8,7 @@ import AdminRegisterPage from '/Users/vincentnguyen/Developer/Senior-Project/sen
 import ModalAddNew from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/ModalAddNew.tsx'
 import { ToastContainer, toast } from 'react-toastify';
 import LandingPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/LandingPage.tsx'
-
+import Footer from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/Footer.tsx'
 
 function App() {
   return (
@@ -30,8 +30,11 @@ function App() {
         draggable
         pauseOnHover
       /> */}
-      <Header />
-      <LandingPage />
+      <div>
+        <Header />
+        <LandingPage />
+        <Footer />
+      </div>
     </>
   );
 }

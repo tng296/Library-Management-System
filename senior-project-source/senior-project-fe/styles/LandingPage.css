@@ -1,0 +1,31 @@
+.landing-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.landing-middle h3 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+.landing-middle p {
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+.landing-middle svg {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 1em;
+    display: block;
+    margin: auto;
+}

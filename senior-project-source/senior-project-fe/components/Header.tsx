@@ -27,6 +27,14 @@ const Header: React.FC = (props) => {
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
+                        <Nav className="ml-left">
+                            <NavDropdown title="Login" id="basic-nav-dropdown">
+                                <NavDropdown.Item href="#action/4.1">Login</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/4.2">
+                                    Register
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

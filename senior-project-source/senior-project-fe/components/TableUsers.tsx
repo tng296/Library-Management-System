@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import ModalAddNew from './ModalAddNew';
-
+import ModalEditUser from './ModalEditUser';
 import { fetchAllUser } from '../services/UserService';
 
 interface User {
@@ -19,6 +19,9 @@ const TableUsers: React.FC = (props) => {
         getUsers();
     }, []);
     const [isShownModalAddNew, setIsShownModalAddNew] = useState(false);
+    const [isShownModalEdit, setIsShownModalEdit] = useState(false);
+    const [userEdit, setUserEdit] = useState<User>({} as User);
+
     const handleClose = () => {
         setIsShownModalAddNew(false);
     }
@@ -31,6 +34,11 @@ const TableUsers: React.FC = (props) => {
         if (res && res.data) {
             setListUser(res.data);
         }
+    }
+    const handleEditUser = (user: User) => {
+        console.log(">>>check user:", user);
+        setUserEdit(user);
+        setIsShownModalEdit(true);
     }
 
     console.log(listUser);
@@ -54,6 +62,7 @@ const TableUsers: React.FC = (props) => {
                         <th>Email</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +78,10 @@ const TableUsers: React.FC = (props) => {
                                 <td>{user.first_name}</td>
                                 {/* User Last Name */}
                                 <td>{user.last_name}</td>
+                                <td>
+                                    <button className="btn btn-danger mx-3" >Delete</button>
+                                    <button className="btn btn-warning" onClick={() => handleEditUser(user)}>Edit</button>
+                                </td>
                             </tr>
                         )
                     })}
@@ -76,6 +89,7 @@ const TableUsers: React.FC = (props) => {
             </Table>
 
             <ModalAddNew show={isShownModalAddNew} handleClose={handleClose} handleAddingNewUser={handleAddingNewUser} />
+            <ModalEditUser show={isShownModalEdit} handleClose={handleClose} />
 
         </>
     );
