@@ -9,6 +9,7 @@ import ModalAddNew from '/Users/vincentnguyen/Developer/Senior-Project/senior-pr
 import { ToastContainer, toast } from 'react-toastify';
 import LandingPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/LandingPage.tsx'
 import Footer from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/Footer.tsx'
+import { Outlet, Link, BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
       /> */}
       <div>
         <Header />
-        <LandingPage />
+        <Outlet />
         <Footer />
       </div>
     </>
