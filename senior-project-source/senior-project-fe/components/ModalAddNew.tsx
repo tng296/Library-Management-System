@@ -8,10 +8,10 @@ const ModalAddNew: React.FC = (props) => {
     interface ModalAddNewProps {
         show: boolean;
         handleClose: () => void;
-        handleAddingNewUser: (user: any) => void; // Add handleAddingNewUser property
+        handleAddingNewUser: (user: any) => void;
     }
 
-    const { show, handleClose, handleAddingNewUser } = props as ModalAddNewProps; // Remove handleAddingNewUser declaration
+    const { show, handleClose, handleAddingNewUser } = props as ModalAddNewProps;
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');

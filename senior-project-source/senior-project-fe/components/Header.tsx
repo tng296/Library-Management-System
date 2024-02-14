@@ -18,12 +18,16 @@ const Header: React.FC = (props) => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Link to="/register" className="nav-link">Member</Link>
-                            <Link to="/book" className="nav-link">Book</Link>
+                            <Link to="/member-introduction" className="nav-link">Member</Link>
+                            <Link to="/book-search" className="nav-link">Book</Link>
                             <NavDropdown title="Services" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Citizenships & Passports</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
+                                <NavDropdown.Item >
+                                <Link to="/passport" className="nav-link">Citizenships & Passports</Link>
+                                    </NavDropdown.Item>
+                                <NavDropdown.Item>
+                                <Link to="/studyroom" className="nav-link">
                                     Study Room Reservation
+                                    </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3"></NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -34,9 +38,15 @@ const Header: React.FC = (props) => {
                         </Nav>
                         <Nav className="ml-left">
                             <NavDropdown title="Login" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/4.1">Login</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/4.2">
+                                <NavDropdown.Item>
+                                <Link to="/login" className="nav-link">
+                                    Login
+                                    </Link>
+                                    </NavDropdown.Item>
+                                <NavDropdown.Item>
+                                <Link to="/register" className="nav-link">
                                     Register
+                                    </Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>

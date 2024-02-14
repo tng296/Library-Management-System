@@ -10,10 +10,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import LandingPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/LandingPage.tsx'
 import Footer from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/Footer.tsx'
 import { Outlet, Link, BrowserRouter, Route, Routes } from 'react-router-dom'
+import AdminDashboard from '../senior-project-fe/pages/AdminDashboard.tsx'
+import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx'
+import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx'
+import PasswordValidation from '../senior-project-fe/helper/PasswordValidation.ts';
+import MoviePage from '../senior-project-fe/pages/MoviePage.tsx'
+import StudyRoomReservation from '../senior-project-fe/pages/studyRoom.tsx'
+import StudyRoomIntroduction from '../senior-project-fe/pages/StudyRoomPage.tsx'
 
 function App() {
   return (
-    <>
+    <div>
       {/* <div className="app-container">
         <Header />
         <Container>
@@ -34,9 +41,9 @@ function App() {
       <div>
         <Header />
         <Outlet />
-        <Footer />
+        <Footer style={{ marginTop: 'auto' }} />
       </div>
-    </>
+    </div>
   );
 }
 

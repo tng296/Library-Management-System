@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/LoginPage.css';
+import { Link } from 'react-router-dom';
 
 interface ILogin {
     username: string;
@@ -14,28 +15,41 @@ const AdminLoginPage: React.FC = () => {
     });
 
     const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLogin({ ...login, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setLogin({ ...login, [name]: value });
     }
 
-    const submitLoginCredentials = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const submitLoginCredentials = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('url go here', login);
-            console.log(response);
-        } catch (error) {
-            console.log(error);
+        if (login.username === 'admin' && login.password === 'admin') {
+            <Link to="/admin-dashboard" />
         }
+        else if (login.username === 'staff' && login.password === 'admin') {
+            <Link to="/staff-dashboard" />
+        }
+        else if (login.username === 'member' && login.password === 'admin') {
+            <Link to = "/member-dashboard"/>
+        }
+        else {
+            alert('Invalid username or password');
+        }
+        // try {
+        //     const response = await axios.post('url go here', login);
+        //     console.log(response);
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
-
+    console.log(login.username);
     return (
         <div className="login-container">
             <h1>Login</h1>
             <form action="">
                 <div className="form-control">
-                    <input onChange={handleLogin} type="text" placeholder="username" />
+                    <input onChange={handleLogin} type="text" placeholder="username" name="username"/>
                 </div>
                 <div>
-                    <input onChange={handleLogin} type="password" placeholder="password" />
+                    <input onChange={handleLogin} type="password" placeholder="password" name="password" />
                 </div>
                 <button onClick={submitLoginCredentials} type="submit">Login</button>
                 <div className="register-link">
