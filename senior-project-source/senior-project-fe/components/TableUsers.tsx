@@ -49,9 +49,9 @@ const TableUsers: React.FC = (props) => {
         <>
             <div className="my-3 add-new">
                 <span>
-                    <b>List User:</b>
+                    <b>Member List</b>
                 </span>
-                <button className="btn btn-primary" onClick={() => setIsShownModalAddNew(true)}>Add new user</button>
+                <button className="btn btn-primary" onClick={() => setIsShownModalAddNew(true)}>Add New Member</button>
             </div>
             {/* Table component */}
 

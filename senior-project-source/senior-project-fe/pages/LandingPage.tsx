@@ -13,9 +13,7 @@ const LandingPage: React.FC = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src='https://images.unsplash.com/photo-1577985051167-0d49eec21977?q=80&w=1489&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-                        alt="First slide"
-                    />
+                        src='https://images.unsplash.com/photo-1598153346810-860daa814c4b?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'></img>
                     <Carousel.Caption>
                         <h5>Welcome to Central Library</h5>
                     </Carousel.Caption>
@@ -28,7 +26,7 @@ const LandingPage: React.FC = () => {
                     />
                     <Carousel.Caption>
                         <h5>Harry Potter</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p>Emerge yourself in a world full of magic.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -38,8 +36,8 @@ const LandingPage: React.FC = () => {
                         alt="Third slide"
                     />
                     <Carousel.Caption>
-                        <h5>Lord of The Rings</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        <h5 text-color="white">Lord of The Rings</h5>
+                        <p>Take on the adventure will Bilbo to defeat Saulron.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -50,7 +48,7 @@ const LandingPage: React.FC = () => {
                     />
                     <Carousel.Caption>
                         <h5>Ender's Game</h5>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                        <p>Get ready for a Universal War and its consequence</p>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>

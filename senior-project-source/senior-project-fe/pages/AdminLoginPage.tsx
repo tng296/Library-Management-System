@@ -22,13 +22,13 @@ const AdminLoginPage: React.FC = () => {
     const submitLoginCredentials = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         if (login.username === 'admin' && login.password === 'admin') {
-            <Link to="/admin-dashboard" />
+            window.location.href = "/admin-dashboard";
         }
-        else if (login.username === 'staff' && login.password === 'admin') {
-            <Link to="/staff-dashboard" />
+        else if (login.username === 'staff' && login.password === 'staff') {
+            window.location.href = "/staff-dashboard";
         }
-        else if (login.username === 'member' && login.password === 'admin') {
-            <Link to = "/member-dashboard"/>
+        else if (login.username === 'member' && login.password === 'member') {
+            window.location.href = "/member-dashboard";
         }
         else {
             alert('Invalid username or password');

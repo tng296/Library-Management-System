@@ -3,7 +3,7 @@ import '../styles/Footer.css';
 
 const Footer: React.FC = () => {
     return (
-        <div style={{ position: 'sticky', bottom: 0, width: '100%', backgroundColor: 'red', color: 'white', textAlign: 'center' }}>
+        <div className= "fixed-bottom" >
             <footer className="main-footer">
                 <hr />
                 <div className="container">

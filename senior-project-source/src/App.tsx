@@ -41,7 +41,7 @@ function App() {
       <div>
         <Header />
         <Outlet />
-        <Footer style={{ marginTop: 'auto' }} />
+        <Footer />
       </div>
     </div>
   );

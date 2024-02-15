@@ -29,10 +29,9 @@ const Header: React.FC = (props) => {
                                     Study Room Reservation
                                     </Link>
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3"></NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">
-                                    Print Services
+                                <NavDropdown.Item>
+                                <Link to="/movie-search" className="nav-link">Movie Search Engine</Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
