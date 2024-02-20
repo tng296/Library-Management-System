@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate';
 import ModalAddNew from './ModalAddNew';
 import ModalEditUser from './ModalEditUser';
 import { fetchAllUser } from '../services/UserService';
+import _ from "lodash";
 
 interface User {
     id: number;
@@ -13,7 +14,7 @@ interface User {
     last_name: string;
 }
 
-const TableUsers: React.FC = (props) => {
+const TableUsers: React.FC = () => {
     const [listUser, setListUser] = useState<User[]>([]);
     useEffect(() => {
         getUsers();
@@ -24,6 +25,7 @@ const TableUsers: React.FC = (props) => {
 
     const handleClose = () => {
         setIsShownModalAddNew(false);
+        setIsShownModalEdit(false);
     }
     const handleAddingNewUser = (user: User) => {
         setListUser([user, ...listUser]);
@@ -39,6 +41,13 @@ const TableUsers: React.FC = (props) => {
         console.log(">>>check user:", user);
         setUserEdit(user);
         setIsShownModalEdit(true);
+    }
+
+    const handleEditUserfromModal = (user: User) => {
+        let cloneListUser = _.cloneDeep(listUser);
+        let index = listUser.findIndex((item) => item.id === user.id);
+        cloneListUser[index].email = user.email;
+        setListUser(cloneListUser);
     }
 
     console.log(listUser);
@@ -89,7 +98,7 @@ const TableUsers: React.FC = (props) => {
             </Table>
 
             <ModalAddNew show={isShownModalAddNew} handleClose={handleClose} handleAddingNewUser={handleAddingNewUser} />
-            <ModalEditUser show={isShownModalEdit} handleClose={handleClose} />
+            <ModalEditUser show={isShownModalEdit} handleClose={handleClose} userEdit={userEdit} handleEditUserfromModal={handleEditUserfromModal} />
 
         </>
     );

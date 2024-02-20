@@ -36,7 +36,7 @@ const LandingPage: React.FC = () => {
                         alt="Third slide"
                     />
                     <Carousel.Caption>
-                        <h5 text-color="white">Lord of The Rings</h5>
+                        <h5>Lord of The Rings</h5>
                         <p>Take on the adventure will Bilbo to defeat Saulron.</p>
                     </Carousel.Caption>
                 </Carousel.Item>

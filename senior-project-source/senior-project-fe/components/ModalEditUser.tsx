@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
+import { updateUser } from '../services/UserService'
 import { postUser } from '../services/UserService';
 import { toast } from 'react-toastify';
 
 const ModalEditUser: React.FC = (props) => {
-    const { show, handleClose } = props as { show: boolean, handleClose: () => void };
+    const { show, handleClose, userEdit, handleEditUserfromModal } = props as { show: boolean, handleClose: () => void, userEdit: any, handleEditUserfromModal: (data: any) => void };
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -18,7 +19,23 @@ const ModalEditUser: React.FC = (props) => {
     }
 
     const handleEditUser = async () => {
+        let res = await updateUser(email, password)
+        if (res && res.updatedAt) {
+            handleEditUserfromModal({
+                email: email,
+                id: userEdit.id,
+            });
+            handleClose();
+            toast.success("Edit user successfully");
+        }
     }
+    useEffect(() => {
+        if (show) {
+            setEmail(userEdit.email)
+            setPassword(userEdit.password)
+        }
+    }, [userEdit])
+    console.log(">>>check props:", userEdit)
     return (
         <div>
             <Modal show={show} onHide={handleClose}>

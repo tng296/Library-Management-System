@@ -21,7 +21,7 @@ import StudyRoomIntroduction from '../senior-project-fe/pages/StudyRoomPage.tsx'
 function App() {
   return (
     <div>
-      {/* <div className="app-container">
+      <div className="app-container">
         <Header />
         <Container>
           <TableUsers />
@@ -37,12 +37,12 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      /> */}
-      <div>
+      />
+      {/* <div>
         <Header />
         <Outlet />
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 }
