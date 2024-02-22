@@ -3,7 +3,7 @@ import '../styles/Footer.css';
 
 const Footer: React.FC = () => {
     return (
-        <div className= "fixed-bottom" >
+        <div className="fixed-bottom" >
             <footer className="main-footer">
                 <hr />
                 <div className="container">

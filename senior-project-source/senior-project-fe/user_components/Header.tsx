@@ -17,7 +17,7 @@ const Header: React.FC = (props) => {
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
+                        <Nav className="me-auto" activeKey="/users">
                             <Link to="/member-introduction" className="nav-link">Member</Link>
                             <Link to="/book-search" className="nav-link">Book</Link>
                             <NavDropdown title="Services" id="basic-nav-dropdown">

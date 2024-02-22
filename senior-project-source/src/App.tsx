@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './App.scss'
-import Header from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/header.tsx'
-import TableUsers from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/TableUsers.tsx'
+import Header from '../senior-project-fe/user_components/header.tsx'
+import TableUsers from '../senior-project-fe/user_components/TableUsers.tsx'
 import Container from 'react-bootstrap/Container';
 import AdminLoginPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/AdminLoginPage.tsx'
 import AdminRegisterPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/AdminRegisterPage.tsx'
-import ModalAddNew from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/ModalAddNew.tsx'
+import ModalAddNew from '../senior-project-fe/user_components/ModalAddNew.tsx'
 import { ToastContainer, toast } from 'react-toastify';
 import LandingPage from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/pages/LandingPage.tsx'
 import Footer from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-fe/components/Footer.tsx'
@@ -17,6 +17,7 @@ import PasswordValidation from '../senior-project-fe/helper/PasswordValidation.t
 import MoviePage from '../senior-project-fe/pages/MoviePage.tsx'
 import StudyRoomReservation from '../senior-project-fe/pages/studyRoom.tsx'
 import StudyRoomIntroduction from '../senior-project-fe/pages/StudyRoomPage.tsx'
+
 
 function App() {
   return (
