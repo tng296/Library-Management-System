@@ -14,7 +14,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-// app.use('/api', require('./routes/api'));
 
 app.get('/', (req, res) => {
 
@@ -29,8 +28,8 @@ app.get('/', (req, res) => {
     connection.execute(
         'SELECT * FROM Member',
         function (err, results, fields) {
-            console.log(results); // results contains rows returned by server
-            console.log(fields); // fields contains extra meta data about results, if available
+            console.log(results);
+            console.log(fields);
             res.status(200).json(results);
         });
 
