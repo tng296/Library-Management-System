@@ -20,23 +20,6 @@ import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} >
-          <Route index element={<LandingPage />} />
-          <Route path="/register" element={<AdminRegisterPage />} />
-          <Route path="/login" element={<AdminLoginPage />} />
-          <Route path="/member" element={<TableUser />} />
-          <Route path="/passport" element={<PassportPage />} />
-          <Route path="/studyroom" element={<StudyRoomIntroduction />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/staff-dashboard" element={<StaffDashboard />} />
-          <Route path="/member-dashboard" element={<MemberDashboard />} />
-          <Route path="/member-introduction" element={<MemberIntroPage />} />
-          <Route path="/book-search" element={<SearchBookPage />} />
-          <Route path="/movie-search" element={<MovieSearch />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
 )

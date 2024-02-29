@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import axios from 'axios';
 import ModalAddNew from './ModalAddNew';
 import ModalEditUser from './ModalEditUser';
-import { fetchAllUser } from '../services/UserService';
 import ModalConfirm from './ModalConfirm';
-import _ from "lodash";
+import _, { set } from "lodash";
 
 interface User {
     id: number;
-    email: string;
     first_name: string;
     last_name: string;
+    email: string;
+    age: string;
+    sex: string;
+    DOB: string;
+    status: string;
+    hold: string;
 }
 
 const TableUsers: React.FC = () => {
@@ -33,10 +38,11 @@ const TableUsers: React.FC = () => {
         setListUser([user, ...listUser]);
     }
     const getUsers = async () => {
-        let res = await fetchAllUser(1);
-        if (res && res.data) {
+
+        await axios.get('http://localhost:3000').then((res) => {
             setListUser(res.data);
-        }
+        }).catch(err => console.log(err));
+
     }
     const handleEditUser = (user: User) => {
         setUserEdit(user);
@@ -62,6 +68,7 @@ const TableUsers: React.FC = () => {
         setListUser(cloneListUser);
     }
 
+    console.log(listUser)
 
     const handlePageClick = () => { }
 
@@ -79,25 +86,27 @@ const TableUsers: React.FC = () => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Email</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Date of Birth</th>
+                        <th>Status</th>
+                        <th>Hold</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Render each user */}
+                    {/* Render  each user */}
                     {listUser && listUser.length > 0 && listUser.map((user, index) => {
                         return (
                             <tr key={`user-${index}`}>
-                                {/* User ID */}
-                                <td>{user.id}</td>
-                                {/* User Email */}
+                                <td>{user.memberID}</td>
+                                <td>{user.fName}</td>
+                                <td>{user.lName}</td>
                                 <td>{user.email}</td>
-                                {/* User First Name */}
-                                <td>{user.first_name}</td>
-                                {/* User Last Name */}
-                                <td>{user.last_name}</td>
+                                <td>{user.DOB}</td>
+                                <td>{user.status}</td>
+                                <td>{user.hold}</td>
                                 <td>
                                     <button className="btn btn-danger mx-3" onClick={() => handleDelete(user)} >Delete</button>
                                     <button className="btn btn-warning" onClick={() => handleEditUser(user)}>Edit</button>

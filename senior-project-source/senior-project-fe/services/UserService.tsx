@@ -1,4 +1,3 @@
-import { first } from 'lodash';
 import axios from './customizedAxios';
 
 

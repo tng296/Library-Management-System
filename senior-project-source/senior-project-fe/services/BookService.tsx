@@ -1,18 +1,9 @@
 import axios from './customizedAxios';
+import fakeDBBook from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-be/fakeDB/fakeBookDB.ts';
 
-
-const fetchAllUser = (page: number) => {
-    return axios.get("/api/users?page=" + page);
+const fetchAllBook = (page: number) => {
+    return fakeDBBook;
 }
-const postUser = (email: string, password: string) => {
-    return axios.post("/api/users", { email, password });
-}
-
-const updateUser = (email: string, password: string) => {
-    return axios.put("/api/users/2", { email, password });
-}
-
-const deleteUser = (id: number) => {
-    return axios.delete(`/api/users/${id}`);
-}
-export { fetchAllUser, postUser, updateUser, deleteUser }
+const postBook = (isbn: string, genre: string, title: string, location: string, status: string, publishedBy: string, writtenBy: string, language: string, shelf: string) => {
+    
+export { fetchAllBook }
