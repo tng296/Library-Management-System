@@ -7,15 +7,15 @@ import ModalConfirm from './ModalConfirm';
 import _, { set } from "lodash";
 
 interface User {
-    id: number;
-    first_name: string;
-    last_name: string;
+    memberID: number;
+    fName: string;
+    lName: string;
     email: string;
     age: string;
     sex: string;
     DOB: string;
     status: string;
-    hold: string;
+    hold: boolean;
 }
 
 const TableUsers: React.FC = () => {
@@ -34,29 +34,42 @@ const TableUsers: React.FC = () => {
         setIsShownModalEdit(false);
         setIsShowModalDelete(false);
     }
-    const handleAddingNewUser = (user: User) => {
+    const handleAddingNewUser = async (user: User) => {
         setListUser([user, ...listUser]);
     }
-    const getUsers = async () => {
 
+    const getUsers = async () => {
         await axios.get('http://localhost:3000').then((res) => {
             setListUser(res.data);
         }).catch(err => console.log(err));
 
     }
     const handleEditUser = (user: User) => {
+        console.log("user", user);
         setUserEdit(user);
         setIsShownModalEdit(true);
     }
 
     const handleEditUserfromModal = (user: User) => {
-        let cloneListUser = _.cloneDeep(listUser);
-        let index = listUser.findIndex((item) => item.id === user.id);
-        cloneListUser[index].email = user.email;
-        cloneListUser[index].first_name = user.first_name;
-        cloneListUser[index].last_name = user.last_name;
-        setListUser(cloneListUser);
-    }
+        // Create a new copy of the list using spread operator
+        const updatedListUser = [...listUser];
+
+        // Find the index of the user to update
+        const index = updatedListUser.findIndex((item) => item.memberID === user.memberID);
+
+        // Update the user data at the found index
+        if (index !== -1) {
+            updatedListUser[index] = user;
+        }
+
+        // Update the state using the new list
+        setListUser(updatedListUser);
+    };
+
+
+
+
+
     const handleDelete = (user: User) => {
         setIsShowModalDelete(true);
         setUserDelete(user);
@@ -64,11 +77,9 @@ const TableUsers: React.FC = () => {
 
     const handleDeleteUserFromModal = (user: User) => {
         let cloneListUser = _.cloneDeep(listUser);
-        cloneListUser = cloneListUser.filter((item) => item.id !== user.id);
+        cloneListUser = cloneListUser.filter((item) => item.memberID !== user.memberID);
         setListUser(cloneListUser);
     }
-
-    console.log(listUser)
 
     const handlePageClick = () => { }
 

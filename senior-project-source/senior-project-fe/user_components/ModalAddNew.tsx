@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal'
-import { postUser } from '../services/UserService';
+import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 import { toast } from 'react-toastify';
-import { first } from 'lodash';
 
 const ModalAddNew: React.FC = (props) => {
     interface ModalAddNewProps {
@@ -15,15 +14,17 @@ const ModalAddNew: React.FC = (props) => {
     const { show, handleClose, handleAddingNewUser } = props as ModalAddNewProps;
 
     const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [first_name, setFirstName] = useState<string>('');
-    const [last_name, setLastName] = useState<string>('');
+    const [fName, setFirstName] = useState<string>('');
+    const [lName, setLastName] = useState<string>('');
+    const [age, setAge] = useState<string>('');
+    const [sex, setSex] = useState<string>('');
+    const [DOB, setDOB] = useState<string>('');
+    const [status, setStatus] = useState<string>('');
+    const [hold, setHold] = useState<string>('');
+
 
     const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
-    }
-    const handlePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
     }
     const handleFirstName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFirstName(event.target.value);
@@ -31,17 +32,50 @@ const ModalAddNew: React.FC = (props) => {
     const handleLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setLastName(event.target.value);
     }
+    const handleAge = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAge(event.target.value);
+    }
+    const handleSex = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSex(event.target.value);
+    }
+    const handleDOB = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setDOB(event.target.value);
+    }
+    const handleStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setStatus(event.target.value);
+    }
+    const handleHold = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setHold(event.target.value);
+    }
 
     const handleSaveUser = async () => {
-        let res = await postUser(email, password, first_name, last_name);
-        if (res && res.id) {
+        let res = await axios.post('http://localhost:3000/adduser', {
+            data: {
+                fName: fName,
+                lName: lName,
+                age: age,
+                sex: sex,
+                DOB: DOB,
+                email: email,
+                status: status,
+                hold: hold
+            }
+        });
+        if (res && res.data) {
             handleClose();
+            setFirstName('');
+            setLastName('');
             setEmail('');
-            setPassword('');
+            setAge('');
+            setSex('');
+            setDOB('');
+            setStatus('');
+            setHold('');
             toast.success("Add new user successfully");
-            handleAddingNewUser({ id: res.id, email: email, first_name: first_name, last_name: last_name });
+            handleAddingNewUser(res.data);
         }
         else {
+            console.log(res);
             toast.error("Add new user failed");
         }
     }
@@ -61,19 +95,36 @@ const ModalAddNew: React.FC = (props) => {
                                 <input type="text" className="form-control" placeholder="Enter email" value={email} onChange={handleEmail} />
                             </div>
                             <div className="form-group">
-                                <label>Password</label>
-                                <input type="password" className="form-control" placeholder="Password" value={password} onChange={handlePassword} />
-                            </div>
-                            <div className="form-group">
                                 <label>First Name</label>
-                                <input type="text" className="form-control" placeholder="First Name" value={first_name} onChange={handleFirstName} />
+                                <input type="text" className="form-control" placeholder="First Name" value={fName} onChange={handleFirstName} />
                             </div>
                             <div className="form-group">
                                 <label>Last Name</label>
-                                <input type="text" className="form-control" placeholder="Last Name" value={last_name} onChange={handleLastName} />
+                                <input type="text" className="form-control" placeholder="Last Name" value={lName} onChange={handleLastName} />
+                            </div>
+                            <div className="form-group">
+                                <label>Age</label>
+                                <input type="text" className="form-control" placeholder="Age" value={age} onChange={handleAge} />
+                            </div>
+                            <div className="form-group">
+                                <label>Sex</label>
+                                <input type="text" className="form-control" placeholder="sex" value={sex} onChange={handleSex} />
+                            </div>
+                            <div className="form-group">
+                                <label>Date of Birth</label>
+                                <input type="text" className="form-control" placeholder="DOB" value={DOB} onChange={handleDOB} />
+                            </div>
+                            <div className="form-group">
+                                <label>Status</label>
+                                <input type="text" className="form-control" placeholder="Status" value={status} onChange={handleStatus} />
+                            </div>
+                            <div className="form-group">
+                                <label>Hold</label>
+                                <input type="text" className="form-control" placeholder="Hold" value={hold} onChange={handleHold} />
                             </div>
                         </div>
-                    </div></Modal.Body>
+                    </div>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
