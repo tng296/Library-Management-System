@@ -1,23 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
-import { deleteUser } from '../services/UserService';
+import axios from 'axios';
 
 const ModalConfirm: React.FC = (props) => {
-    interface ModalAddNewProps {
-        show: boolean;
-        handleClose: () => void;
-        handleAddingNewUser: (user: any) => void;
-        userDelete: (user: any) => void;
-        handleDeleteUserFromModal: (user: any) => void;
-    }
-
-    const { show, handleClose, userDelete, handleDeleteUserFromModal } = props as ModalAddNewProps;
+    const { show, handleClose, userDelete, handleDeleteUserFromModal } = props as {
+        show: boolean,
+        handleClose: () => void, userDelete: any, handleDeleteUserFromModal: (data: any) => void
+    };
 
     const confirmDelete = async () => {
-        let res = await deleteUser(userDelete.id);
-        if (res && +res.statusCode === 204) {
+        let res = await axios.delete(`http://localhost:3000/deleteuser`, { data: { memberID: userDelete.memberID } });
+        if (res && res.data.success) {
             toast.success('Delete user successfully');
             handleClose();
             handleDeleteUserFromModal(userDelete);

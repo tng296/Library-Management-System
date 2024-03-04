@@ -62,7 +62,6 @@ app.post('/adduser', (req, res) => {
 app.put('/edituser', (req, res) => {
     const { fName, lName, email, status, memberID } = req.body.data;
     const id = req.body.data.memberID;
-    console.log(">>>check: ", id);
     const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -83,6 +82,29 @@ app.put('/edituser', (req, res) => {
         }
     );
 });
+
+app.delete('/deleteuser', (req, res) => {
+    const id = req.body.memberID;
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'thanhtung0709',
+        database: 'LIBRARY',
+    });
+    connection.execute(
+        'DELETE FROM Member WHERE MemberID = ?', [id],
+        function (err, results, fields) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Failed to delete user' });
+            } else {
+                console.log('Delete user successfully');
+                res.status(200).json({ success: true });
+            }
+        }
+    )
+});
+
 
 
 

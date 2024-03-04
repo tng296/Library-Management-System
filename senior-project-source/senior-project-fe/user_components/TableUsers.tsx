@@ -20,9 +20,11 @@ interface User {
 
 const TableUsers: React.FC = () => {
     const [listUser, setListUser] = useState<User[]>([]);
+
     useEffect(() => {
         getUsers();
     }, []);
+
     const [isShownModalAddNew, setIsShownModalAddNew] = useState(false);
     const [isShowModalDelete, setIsShowModalDelete] = useState(false);
     const [isShownModalEdit, setIsShownModalEdit] = useState(false);
@@ -51,24 +53,13 @@ const TableUsers: React.FC = () => {
     }
 
     const handleEditUserfromModal = (user: User) => {
-        // Create a new copy of the list using spread operator
         const updatedListUser = [...listUser];
-
-        // Find the index of the user to update
         const index = updatedListUser.findIndex((item) => item.memberID === user.memberID);
-
-        // Update the user data at the found index
         if (index !== -1) {
             updatedListUser[index] = user;
         }
-
-        // Update the state using the new list
         setListUser(updatedListUser);
     };
-
-
-
-
 
     const handleDelete = (user: User) => {
         setIsShowModalDelete(true);
@@ -80,8 +71,6 @@ const TableUsers: React.FC = () => {
         cloneListUser = cloneListUser.filter((item) => item.memberID !== user.memberID);
         setListUser(cloneListUser);
     }
-
-    const handlePageClick = () => { }
 
     return (
         <>

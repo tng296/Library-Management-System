@@ -26,6 +26,7 @@ const ModalEditUser: React.FC = (props) => {
     }
 
     const handleEditUser = async () => {
+        console.log(">>>check memberID", userEdit.memberID)
         let res = await axios.put('http://localhost:3000/edituser', {
             data: {
                 email: email,
@@ -41,7 +42,7 @@ const ModalEditUser: React.FC = (props) => {
                 fName: fName,
                 lName: lName,
                 status: status,
-                ID: userEdit.memberID,
+                memberID: userEdit.memberID,
             });
             handleClose();
             toast.success("Edit user successfully");
