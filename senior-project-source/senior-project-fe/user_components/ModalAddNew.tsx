@@ -62,6 +62,7 @@ const ModalAddNew: React.FC = (props) => {
             }
         });
         if (res && res.data) {
+            handleAddingNewUser(res.data);
             handleClose();
             setFirstName('');
             setLastName('');

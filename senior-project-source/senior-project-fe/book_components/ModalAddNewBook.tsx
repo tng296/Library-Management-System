@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const ModalAddNewBook: React.FC = (props) => {
     interface ModalAddNewProps {
@@ -12,7 +13,7 @@ const ModalAddNewBook: React.FC = (props) => {
 
     const { show, handleClose, handleAddingNewBook } = props as ModalAddNewProps;
 
-    const [isbn, setIsbn] = useState<string>('');
+    const [ISBN, setISBN] = useState<string>('');
     const [genre, setGenre] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [location, setLocation] = useState<string>('');
@@ -21,8 +22,9 @@ const ModalAddNewBook: React.FC = (props) => {
     const [writtenBy, setWrittenBy] = useState<string>('');
     const [language, setLanguage] = useState<string>('');
     const [shelf, setShelf] = useState<string>('');
-    const handleIsbn = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsbn(event.target.value);
+
+    const handleISBN = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setISBN(event.target.value);
     }
     const handleGenre = (event: React.ChangeEvent<HTMLInputElement>) => {
         setGenre(event.target.value);
@@ -48,12 +50,13 @@ const ModalAddNewBook: React.FC = (props) => {
     const handleShelf = (event: React.ChangeEvent<HTMLInputElement>) => {
         setShelf(event.target.value);
     }
+
     const handleSaveBook = async () => {
-        let res = await postBook(isbn, genre, title, location, status, publishedBy, writtenBy, language, shelf);
-        if (res && res.id) {
-            handleAddingNewBook({ isbn, genre, title, location, status, publishedBy, writtenBy, language, shelf });
+        let res = await axios.post('http://localhost:3000/addbook', { data: { ISBN, genre, title, location, status, publishedBy, writtenBy, language, shelf } });
+        if (res && res.data) {
+            handleAddingNewBook(res.data);
             handleClose();
-            setIsbn('');
+            setISBN('');
             setGenre('');
             setTitle('');
             setLocation('');
@@ -82,7 +85,7 @@ const ModalAddNewBook: React.FC = (props) => {
                         <div>
                             <div className="form-group">
                                 <label>ISBN</label>
-                                <input type="text" className="form-control" placeholder="Enter email" value={email} onChange={handleEmail} />
+                                <input type="text" className="form-control" placeholder="ISBN" value={ISBN} onChange={handleISBN} />
                             </div>
                             <div className="form-group">
                                 <label>Genre</label>
@@ -116,7 +119,9 @@ const ModalAddNewBook: React.FC = (props) => {
                                 <label>Shelf</label>
                                 <input type="text" className="form-control" placeholder="Shelf" value={shelf} onChange={handleShelf} />
                             </div>
-                        </div></Modal.Body>
+                        </div>
+                    </div>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close

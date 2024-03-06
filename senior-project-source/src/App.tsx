@@ -2,6 +2,7 @@ import './App.scss'
 import Header from '../senior-project-fe/user_components/header.tsx'
 import TableUsers from '../senior-project-fe/user_components/TableUsers.tsx'
 import Container from 'react-bootstrap/Container';
+import TableBook from '../senior-project-fe/book_components/TableBook.tsx'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 
@@ -10,7 +11,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/'>
-        <Route index element={<TableUsers />}></Route>
+        <Route index element={<TableBook />}></Route>
       </Route>
     )
   );

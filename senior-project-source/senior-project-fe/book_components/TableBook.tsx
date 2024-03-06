@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
-import _ from "lodash";
-import { fetchAllBook } from '../services/BookService';
+import axios from 'axios';
+import _, { set } from "lodash";
+import ModalEditBook from '../book_components/ModalEditBook';
+import ModalAddNewBook from '../book_components/ModalAddNewBook';
+import ModalDeleteBook from '../book_components/ModalDeleteBook';
+
 interface Book {
-    isbn: string;
+    ISBN: string;
     genre: string;
     title: string;
     location: string;
@@ -13,9 +17,10 @@ interface Book {
     language: string;
     shelf: string
 }
-const TableBook: React.FC = () =>{
-    
+
+const TableBook: React.FC = () => {
     const [listBook, setListBook] = useState<Book[]>([]);
+
     useEffect(() => {
         getBooks();
     }, []);
@@ -31,12 +36,44 @@ const TableBook: React.FC = () =>{
         setIsShownModalEditBook(false);
         setIsShowModalDeleteBook(false);
     }
+
     const handleAddingNewBook = (book: Book) => {
         setListBook([book, ...listBook]);
     }
-    
 
-    const handlePageclick = () => { }
+    const getBooks = async () => {
+        await axios.get('http://localhost:3000/fetchBooks').then((res) => {
+            setListBook(res.data);
+        }).catch(err => console.log(err));
+    }
+
+    const handleEditBook = (book: Book) => {
+        setBookEdit(book);
+        setIsShownModalEditBook(true);
+    }
+
+    const handleEditBookfromModal = (book: Book) => {
+        const updatedListBook = [...listBook];
+        const index = updatedListBook.findIndex((item) => item.ISBN === book.ISBN);
+        if (index !== -1) {
+            updatedListBook[index] = book;
+        }
+        setListBook(updatedListBook);
+    }
+
+    const handleDelete = (book: Book) => {
+        setIsShowModalDeleteBook(true);
+        setBookDelete(book);
+    }
+
+    const handleDeleteBookFromModal = (book: Book) => {
+        let cloneListBook = _.cloneDeep(listBook);
+        cloneListBook = cloneListBook.filter((item) => item.ISBN !== book.ISBN);
+        setListBook(cloneListBook);
+    }
+
+
+
     return (
         <div>
             <div className="my-3 add-new">
@@ -45,7 +82,6 @@ const TableBook: React.FC = () =>{
                 </span>
                 <button className="btn btn-primary" onClick={() => setIsShownModalAddNewBook(true)}>Add New Book</button>
             </div>
-            {/* Table component */}
 
             <Table striped bordered hover>
                 <thead>
@@ -65,8 +101,9 @@ const TableBook: React.FC = () =>{
                 <tbody>
                     {listBook && listBook.length > 0 && listBook.map((book, index) => {
                         return (
-                            <tr key={`user-${index}`}>
-                                <td>{book.isbn}</td>
+
+                            <tr key={`book-${index}`}>
+                                <td>{book.ISBN}</td>
                                 <td>{book.genre}</td>
                                 <td>{book.title}</td>
                                 <td>{book.location}</td>
@@ -76,16 +113,19 @@ const TableBook: React.FC = () =>{
                                 <td>{book.language}</td>
                                 <td>{book.shelf}</td>
                                 <td>
-                                    <button className="btn btn-danger mx-3">Delete</button>
-                                    <button className="btn btn-warning">Edit</button>
+                                    <button className="btn btn-danger mx-3" onClick={() => { handleDelete(book) }}>Delete</button>
+                                    <button className="btn btn-warning" onClick={() => { handleEditBook(book) }}>Edit</button>
                                 </td>
                             </tr>
                         )
                     })}
                 </tbody>
             </Table>
+            <ModalAddNewBook show={isShownModalAddNewBook} handleClose={handleClose} handleAddingNewBook={handleAddingNewBook} />
+            <ModalEditBook show={isShownModalEditBook} handleClose={handleClose} bookEdit={bookEdit} handleEditBookfromModal={handleEditBookfromModal} />
+            <ModalDeleteBook show={isShowModalDeleteBook} handleClose={handleClose} bookDelete={bookDelete} handleDeleteBookFromModal={handleDeleteBookFromModal} />
         </div>
     )
 }
 
-export default TableBook
+export default TableBook;

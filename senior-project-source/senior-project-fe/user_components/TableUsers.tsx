@@ -4,7 +4,7 @@ import axios from 'axios';
 import ModalAddNew from './ModalAddNew';
 import ModalEditUser from './ModalEditUser';
 import ModalConfirm from './ModalConfirm';
-import _, { set } from "lodash";
+import _ from "lodash";
 
 interface User {
     memberID: number;
