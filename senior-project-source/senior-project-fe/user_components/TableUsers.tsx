@@ -16,6 +16,7 @@ interface User {
     DOB: string;
     status: string;
     hold: boolean;
+    password?: string;
 }
 
 const TableUsers: React.FC = () => {
@@ -92,11 +93,11 @@ const TableUsers: React.FC = () => {
                         <th>Date of Birth</th>
                         <th>Status</th>
                         <th>Hold</th>
+                        <th>Password</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Render  each user */}
                     {listUser && listUser.length > 0 && listUser.map((user, index) => {
                         return (
                             <tr key={`user-${index}`}>
@@ -107,6 +108,7 @@ const TableUsers: React.FC = () => {
                                 <td>{user.DOB}</td>
                                 <td>{user.status}</td>
                                 <td>{user.hold}</td>
+                                <td>********</td>
                                 <td>
                                     <button className="btn btn-danger mx-3" onClick={() => handleDelete(user)} >Delete</button>
                                     <button className="btn btn-warning" onClick={() => handleEditUser(user)}>Edit</button>

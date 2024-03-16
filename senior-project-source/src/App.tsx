@@ -1,17 +1,29 @@
 import './App.scss'
-import Header from '../senior-project-fe/user_components/header.tsx'
-import TableUsers from '../senior-project-fe/user_components/TableUsers.tsx'
+import Header from '../senior-project-fe/user_components/header.tsx';
+import TableUsers from '../senior-project-fe/user_components/TableUsers.tsx';
 import Container from 'react-bootstrap/Container';
-import TableBook from '../senior-project-fe/book_components/TableBook.tsx'
-import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom'
+import TableBook from '../senior-project-fe/book_components/TableBook.tsx';
+import LandingPage from '../senior-project-fe/pages/LandingPage.tsx';
+import AdminLoginPage from '../senior-project-fe/pages/AdminLoginPage.tsx';
+import AdminDasboard from '../senior-project-fe/pages/AdminDashboard.tsx';
+import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
+import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
+import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { omit } from 'lodash';
 
 function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/'>
-        <Route index element={<TableBook />}></Route>
+        <Route index element={<LandingPage />}></Route>
+        <Route path='/booklist' element={<TableBook />}></Route>
+        <Route path='/memberlist' element={<TableUsers />}></Route>
+        <Route path='/login' element={<AdminLoginPage />}></Route>
+        <Route path='/login/admindashboard' element={<AdminDasboard />}></Route>
+        <Route path='/login/memberdashboard' element={<MemberDashboard />}></Route>
+        <Route path='/login/staffdashboard' element={<StaffDashboard />}></Route>
       </Route>
     )
   );

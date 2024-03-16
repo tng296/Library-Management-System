@@ -4,6 +4,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const port = 3000;
+const bcrypt = require('bcryptjs');
+
+const salt = bcrypt.genSaltSync(10);
 
 const corsOptions = {
     origin: ['http://localhost:5173'],
@@ -58,7 +61,8 @@ app.post('/adduser', (req, res) => {
     );
 });
 app.put('/edituser', (req, res) => {
-    const { fName, lName, email, status, memberID } = req.body.data;
+    const { fName, lName, email, status, password, memberID } = req.body.data;
+    const passwordHash = bcrypt.hashSync(password, salt);
     const id = req.body.data.memberID;
     const connection = mysql.createConnection({
         host: 'localhost',
@@ -68,7 +72,7 @@ app.put('/edituser', (req, res) => {
     });
 
     connection.execute(
-        'UPDATE Member SET fName = ?, lName = ?, email = ?, status =? WHERE MemberID = ?', [fName, lName, email, status, memberID],
+        'UPDATE Member SET fName = ?, lName = ?, email = ?, status =?, password=? WHERE MemberID = ?', [fName, lName, email, status, passwordHash, memberID],
         function (err, results, fields) {
             if (err) {
                 console.error(err);
@@ -114,7 +118,6 @@ app.get('/fetchBooks', (req, res) => {
     connection.execute(
         'SELECT * FROM Book',
         function (err, results, fields) {
-
             res.status(200).json(results);
         });
 });
@@ -188,6 +191,33 @@ app.delete('/deletebook', (req, res) => {
             }
         }
     )
+});
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body.data;
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'thanhtung0709',
+        database: 'LIBRARY'
+    });
+
+    connection.execute(
+        'SELECT roleID, password FROM Member WHERE email = ?', [email],
+        function (err, results, fields) {
+            console.log(">>results: ", results[0].password);
+            let checkPass = bcrypt.compareSync(password, results[0].password);
+            console.log(">>checkPass: ", checkPass);
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Failed to login' });
+            }
+            else if (checkPass) {
+                res.status(200).json({ roleID: results[0].roleID });
+            } else {
+                res.status(500).json({ error: 'Failed to login' });
+            }
+        })
 });
 
 app.listen(port, () => {
