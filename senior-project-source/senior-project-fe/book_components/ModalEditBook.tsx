@@ -21,11 +21,7 @@ const ModalEditBook: React.FC = (props) => {
     const [writtenBy, setWrittenBy] = useState(bookEdit.writtenBy);
     const [language, setLanguage] = useState(bookEdit.language);
     const [shelf, setShelf] = useState(bookEdit.shelf);
-
-    const handleISBN = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setISBN(event.target.value);
-    }
-
+    
     const handleGenre = (event: React.ChangeEvent<HTMLInputElement>) => {
         setGenre(event.target.value);
     }

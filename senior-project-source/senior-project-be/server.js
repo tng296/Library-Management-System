@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const port = 3000;
 const bcrypt = require('bcryptjs');
+const { CreateToken, VerifyToken } = require('./middleware/APIController.js');
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -218,6 +219,29 @@ app.post('/login', (req, res) => {
                 res.status(500).json({ error: 'Failed to login' });
             }
         })
+});
+
+app.get('/fetchStudyRoom', (req, res) => {
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'thanhtung0709',
+        database: 'LIBRARY'
+    });
+
+    connection.execute(
+        'SELECT * FROM StudyRoom',
+        function (err, results, fields) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Failed to fetch study room' });
+            }
+            else {
+                console.log('Fetch study room successfully');
+                res.status(200).json(results);
+            }
+        }
+    )
 });
 
 app.listen(port, () => {

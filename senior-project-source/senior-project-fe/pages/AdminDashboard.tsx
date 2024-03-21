@@ -17,7 +17,7 @@ const AdminDashboard: React.FC = () => {
             <div className="row">
                 <div className="col-sm text-center">
                     <Link
-                        to="/members"
+                        to="/memberlist"
                         className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
                     >
                         <Person className="mb-2" size={48} />
@@ -26,7 +26,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="col-sm text-center">
                     <Link
-                        to="/books"
+                        to="/booklist"
                         className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
                     >
                         <Book className="mb-2" size={48} />
@@ -35,7 +35,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="col-sm text-center">
                     <Link
-                        to="/staffs"
+                        to="/memberlist"
                         className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
                     >
                         <People className="mb-2" size={48} />
@@ -55,7 +55,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="col-sm text-center">
                     <Link
-                        to="/study-rooms"
+                        to="/studyroom"
                         className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
                     >
                         <DoorOpen className="mb-2" size={48} />

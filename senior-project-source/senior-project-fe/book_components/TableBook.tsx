@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 import axios from 'axios';
-import _, { set } from "lodash";
+import _ from "lodash";
 import ModalEditBook from '../book_components/ModalEditBook';
 import ModalAddNewBook from '../book_components/ModalAddNewBook';
 import ModalDeleteBook from '../book_components/ModalDeleteBook';
@@ -20,6 +20,7 @@ interface Book {
 
 const TableBook: React.FC = () => {
     const [listBook, setListBook] = useState<Book[]>([]);
+
 
     useEffect(() => {
         getBooks();
