@@ -54,6 +54,7 @@ const TableBook: React.FC = () => {
     }
 
     const handleEditBookfromModal = (book: Book) => {
+        console.log(book.ISBN);
         const updatedListBook = [...listBook];
         const index = updatedListBook.findIndex((item) => item.ISBN === book.ISBN);
         if (index !== -1) {
@@ -74,13 +75,13 @@ const TableBook: React.FC = () => {
     }
 
 
-
     return (
         <div>
             <div className="my-3 add-new">
                 <span>
                     <b>Book List</b>
                 </span>
+
                 <button className="btn btn-primary" onClick={() => setIsShownModalAddNewBook(true)}>Add New Book</button>
             </div>
 

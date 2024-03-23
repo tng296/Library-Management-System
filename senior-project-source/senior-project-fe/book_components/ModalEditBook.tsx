@@ -21,7 +21,7 @@ const ModalEditBook: React.FC = (props) => {
     const [writtenBy, setWrittenBy] = useState(bookEdit.writtenBy);
     const [language, setLanguage] = useState(bookEdit.language);
     const [shelf, setShelf] = useState(bookEdit.shelf);
-    
+
     const handleGenre = (event: React.ChangeEvent<HTMLInputElement>) => {
         setGenre(event.target.value);
     }
@@ -60,7 +60,6 @@ const ModalEditBook: React.FC = (props) => {
                 writtenBy: writtenBy,
                 language: language,
                 shelf: shelf,
-                bookID: bookEdit.bookID
             },
         });
         if (res && res.data.success) {
@@ -74,10 +73,9 @@ const ModalEditBook: React.FC = (props) => {
                 writtenBy: writtenBy,
                 language: language,
                 shelf: shelf,
-                bookID: bookEdit.bookID
             });
             handleClose();
-            toast.success("Edit user successfully");
+            toast.success("Edit book successfully");
         }
     };
 

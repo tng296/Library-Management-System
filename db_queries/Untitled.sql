@@ -107,6 +107,18 @@ CREATE TABLE Author (
     lName VARCHAR(255)
 );
 
+ CREATE TABLE StudyRoom(
+ roomID INT PRIMARY KEY,
+ availability BOOLEAN,
+ email VARCHAR(255)
+ );
+ 
+ INSERT INTO StudyRoom (roomID, availability, email)
+VALUES 
+    (107, TRUE, "Blank"),
+(207, TRUE, "Blank"),
+    (307, TRUE, "Blank");
+
 INSERT INTO Book (ISBN, genre, title, location, status, publishedBy, writtenBy, language, shelf) VALUES
 ('9780345342966', 'Science Fiction', 'The Hitchhiker''s Guide to the Galaxy', 'Fiction Section', 'Available', 'Ballantine Books', 'Douglas Adams', 'English', 'A1'),
 ('9780547928227', 'Fantasy', 'Harry Potter and the Sorcerer''s Stone', 'Young Adult Section', 'Available', 'Arthur A. Levine Books', 'J.K. Rowling', 'English', 'B2'),
@@ -144,5 +156,10 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ALTER TABLE Member MODIFY COLUMN password VARCHAR(256);
 
-ALTER
+ALTER TABLE `Member` ADD `roleID` INT NOT NULL;
 
+ALTER TABLE `StudyRoom` DROP `memberID`;
+
+ALTER TABLE `Book` ADD `rentedBy` VARCHAR(256);
+
+ALTER TABLE `Book` ALTER `rentedBy` SET DEFAULT 'Blank';

@@ -8,6 +8,7 @@ import AdminLoginPage from '../senior-project-fe/pages/AdminLoginPage.tsx';
 import AdminDasboard from '../senior-project-fe/pages/AdminDashboard.tsx';
 import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
 import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
+import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/memberdashboard' element={<MemberDashboard />}></Route>
         <Route path='/staffdashboard' element={<StaffDashboard />}></Route>
         <Route path='/studyroom' element={<StudyRoom />}></Route>
+        <Route path='/booksearch' element={<SearchBookPage />}></Route>
       </Route>
     )
   );

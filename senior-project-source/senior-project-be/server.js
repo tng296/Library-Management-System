@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const port = 3000;
 const bcrypt = require('bcryptjs');
-const { CreateToken, VerifyToken } = require('./middleware/APIController.js');
+const { CreateToken, VerifyToken } = require('./middleware/JWTController.js');
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -239,6 +239,53 @@ app.get('/fetchStudyRoom', (req, res) => {
             else {
                 console.log('Fetch study room successfully');
                 res.status(200).json(results);
+            }
+        }
+    )
+});
+
+app.put('/checkoutbook', (req, res) => {
+    const { rentedBy, ISBN } = req.body.data;
+    console.log(">>rentedBy in server: ", rentedBy);
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'thanhtung0709',
+        database: 'LIBRARY'
+    });
+
+    connection.execute(
+        'UPDATE Book SET rentedBy = ? WHERE ISBN = ?', [rentedBy, ISBN],
+        function (err, results, fields) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Failed to checkout book' });
+            } else {
+                console.log('Checkout book successfully');
+                res.status(200).json({ success: true });
+            }
+        }
+    )
+});
+
+app.put('/checkinbook', (req, res) => {
+    const { ISBN } = req.body.data;
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'thanhtung0709',
+        database: 'LIBRARY'
+    });
+
+    connection.execute(
+        'UPDATE Book SET rentedBy = ? WHERE ISBN = ?', [`None`, ISBN],
+        function (err, results, fields) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Failed to checkIN book' });
+            } else {
+                console.log('Checkout book successfully');
+                res.status(200).json({ success: true });
             }
         }
     )
