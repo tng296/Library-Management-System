@@ -40,7 +40,7 @@ const CheckInModal: React.FC = (props) => {
             <Modal show={show} onHide={handleClose} backdrop="static"
                 keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Check Out</Modal.Title>
+                    <Modal.Title>Check In</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="body-add-new">

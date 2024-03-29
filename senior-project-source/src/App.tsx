@@ -5,12 +5,13 @@ import TableUsers from '../senior-project-fe/user_components/TableUsers.tsx';
 import TableBook from '../senior-project-fe/book_components/TableBook.tsx';
 import LandingPage from '../senior-project-fe/pages/LandingPage.tsx';
 import AdminLoginPage from '../senior-project-fe/pages/AdminLoginPage.tsx';
-import AdminDasboard from '../senior-project-fe/pages/AdminDashboard.tsx';
+import AdminDashboard from '../senior-project-fe/pages/AdminDashboard.tsx';
 import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
 import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
 import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import PrivateRoute from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-be/middleware/PrivateRoute.jsx';
 
 function App() {
 
@@ -19,10 +20,20 @@ function App() {
       <Route path='/'>
         <Route index element={<LandingPage />}></Route>
         <Route path='/booklist' element={<TableBook />}></Route>
-        <Route path='/memberlist' element={<TableUsers />}></Route>
         <Route path='/login' element={<AdminLoginPage />}></Route>
-        <Route path='/login/admindashboard' element={<AdminDasboard />}></Route>
-        <Route path='/memberdashboard' element={<MemberDashboard />}></Route>
+        {/* <Route path='/admindashboard' element={<AdminDashboard />}></Route> */}
+        <Route
+          path="/admindashboard"
+          element={<PrivateRoute path element={<AdminDashboard />} roleID="1" />}
+        />
+        <Route
+          path="/memberdashboard"
+          element={<PrivateRoute path element={<MemberDashboard />} roleID="3" />}
+        />
+        <Route
+          path="/memberlist"
+          element={<PrivateRoute path element={<TableBook />} roleID="1" />}
+        />
         <Route path='/staffdashboard' element={<StaffDashboard />}></Route>
         <Route path='/studyroom' element={<StudyRoom />}></Route>
         <Route path='/booksearch' element={<SearchBookPage />}></Route>

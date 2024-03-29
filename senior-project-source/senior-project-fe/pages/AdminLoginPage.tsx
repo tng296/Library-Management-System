@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router';
 import axios from 'axios';
 import '../styles/LoginPage.css';
 import { Link } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import { CookiesProvider } from 'react-cookie';
 
 interface ILogin {
     email: string;
@@ -15,6 +17,7 @@ const AdminLoginPage: React.FC = () => {
         email: '',
         password: ''
     });
+    const [cookies, setCookie] = useCookies(['token']);
 
     const navigate = useNavigate();
 
@@ -26,8 +29,10 @@ const AdminLoginPage: React.FC = () => {
         e.preventDefault();
         const res = await axios.post('http://localhost:3000/login', { data: { email: login.email, password: login.password } });
         if (res && res.data) {
+            setCookie('token', res.data.token);
+            console.log(">>>check token at login:", res.data.token);
             if (res.data.roleID === 1) {
-                navigate(`AdminDashboard`);
+                navigate(`/AdminDashboard`);
             } else if (res.data.roleID === 2) {
                 navigate(`/StaffDashboard`);
             }

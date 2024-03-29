@@ -1,6 +1,5 @@
 require('dotenv').config({ path: '../.env' });
 const jwt = require('jsonwebtoken');
-const { AlignStart } = require('react-bootstrap-icons');
 
 
 const CreateToken = (payload) => {
@@ -13,18 +12,17 @@ const CreateToken = (payload) => {
     }
     return token;
 }
-
 const VerifyToken = (token) => {
     let key = 'cenlib';
     let data = null;
     jwt.verify(token, key, function (err, decoded) {
         if (err) {
             console.log(err);
-            return data;
         }
-        console.log(decoded);
-        return decoded;
+        data = decoded;
     });
+    return data;
 }
+
 
 module.exports = { CreateToken, VerifyToken };

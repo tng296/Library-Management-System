@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const port = 3000;
 const bcrypt = require('bcryptjs');
-const { CreateToken, VerifyToken } = require('./middleware/JWTController.js');
+const { CreateToken, VerifyToken } = require('./middleware/JWTcontroller.js');
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -206,15 +206,14 @@ app.post('/login', (req, res) => {
     connection.execute(
         'SELECT roleID, password FROM Member WHERE email = ?', [email],
         function (err, results, fields) {
-            console.log(">>results: ", results[0].password);
             let checkPass = bcrypt.compareSync(password, results[0].password);
-            console.log(">>checkPass: ", checkPass);
             if (err) {
                 console.error(err);
                 res.status(500).json({ error: 'Failed to login' });
             }
             else if (checkPass) {
-                res.status(200).json({ roleID: results[0].roleID });
+                let token = CreateToken({ roleID: results[0].roleID });
+                res.status(200).json({ roleID: results[0].roleID, token: token });
             } else {
                 res.status(500).json({ error: 'Failed to login' });
             }
@@ -290,6 +289,22 @@ app.put('/checkinbook', (req, res) => {
         }
     )
 });
+
+app.post('/verifyToken', async (req, res) => {
+    const { token } = req.body.data;
+    console.log(">>>check token in server :", token);
+    try {
+        let decodedToken = await VerifyToken(token);
+        console.log(">>>check decoded token: ", decodedToken);
+        res.status(200).json(decodedToken);
+    }
+    catch {
+        console.log(err);
+        res.status(500).json({ error: 'Failed to verify token' });
+    }
+});
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
