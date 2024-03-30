@@ -9,52 +9,58 @@ import AdminDashboard from '../senior-project-fe/pages/AdminDashboard.tsx';
 import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
 import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
 import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
-import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
+import Footer from '../senior-project-fe/user_components/Footer.tsx';
+import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-be/middleware/PrivateRoute.jsx';
 
-function App() {
+const PageLayout = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
-  const router = createBrowserRouter(
+function App() {
+  const customRouter = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/'>
+      <Route path="/">
         <Route index element={<LandingPage />}></Route>
-        <Route path='/booklist' element={<TableBook />}></Route>
-        <Route path='/login' element={<AdminLoginPage />}></Route>
-        {/* <Route path='/admindashboard' element={<AdminDashboard />}></Route> */}
-        <Route
-          path="/admindashboard"
-          element={<PrivateRoute path element={<AdminDashboard />} roleID="1" />}
-        />
-        <Route
-          path="/memberdashboard"
-          element={<PrivateRoute path element={<MemberDashboard />} roleID="3" />}
-        />
-        <Route
-          path="/memberlist"
-          element={<PrivateRoute path element={<TableBook />} roleID="1" />}
-        />
-        <Route path='/staffdashboard' element={<StaffDashboard />}></Route>
-        <Route path='/studyroom' element={<StudyRoom />}></Route>
-        <Route path='/booksearch' element={<SearchBookPage />}></Route>
+        <Route element={<PageLayout />}>
+          <Route path="/booklist" element={<TableBook />}></Route>
+          <Route path="/login" element={<AdminLoginPage />}></Route>
+          <Route path="/admindashboard" element={<PrivateRoute roleID={1}><AdminDashboard /></PrivateRoute>} />
+          <Route path="/memberdashboard" element={<PrivateRoute roleID={1}><MemberDashboard /></PrivateRoute>} />
+          <Route path="/memberlist" element={<PrivateRoute roleID={1}><TableUsers /></PrivateRoute>} />
+          <Route path="/staffdashboard" element={<StaffDashboard />}></Route>
+          <Route path="/studyroom" element={<StudyRoom />}></Route>
+          <Route path="/booksearch" element={<SearchBookPage />}></Route>
+          <Route path="*" element={<p>Page under construction</p>} />
+        </Route>
       </Route>
     )
   );
 
   return (
     <div className="app-container">
-      <RouterProvider router={router} />
-      <ToastContainer position="bottom-center"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover />
+      <RouterProvider router={customRouter}>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </RouterProvider>
     </div>
   );
 }
 
-export default App
+export default App;

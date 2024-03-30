@@ -22,30 +22,28 @@ const Header: React.FC = (props) => {
                             <Link to="/book-search" className="nav-link">Book</Link>
                             <NavDropdown title="Services" id="basic-nav-dropdown">
                                 <NavDropdown.Item >
-                                <Link to="/passport" className="nav-link">Citizenships & Passports</Link>
-                                    </NavDropdown.Item>
+                                    <Link to="/passport" className="nav-link">Citizenships & Passports</Link>
+                                </NavDropdown.Item>
                                 <NavDropdown.Item>
-                                <Link to="/studyroom" className="nav-link">
-                                    Study Room Reservation
+                                    <Link to="/studyroom" className="nav-link">
+                                        Study Room Reservation
                                     </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item>
-                                <Link to="/movie-search" className="nav-link">Movie Search Engine</Link>
+                                    <Link to="/movie-search" className="nav-link">Movie Search Engine</Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Nav className="ml-left">
-                            <NavDropdown title="Login" id="basic-nav-dropdown">
+                            <NavDropdown title="Hello" id="basic-nav-dropdown">
                                 <NavDropdown.Item>
-                                <Link to="/login" className="nav-link">
-                                    Login
+                                    <Link to="/login" className="nav-link">
+                                        Personal Info
                                     </Link>
-                                    </NavDropdown.Item>
+                                </NavDropdown.Item>
                                 <NavDropdown.Item>
-                                <Link to="/register" className="nav-link">
-                                    Register
-                                    </Link>
+                                    <button type="submit">Logout</button>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>

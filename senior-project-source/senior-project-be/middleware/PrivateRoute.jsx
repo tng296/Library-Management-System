@@ -1,21 +1,20 @@
-import { Route, Navigate } from 'react-router-dom';
+import { Route, Navigate, useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
+const PrivateRoute = ({ children, roleID }) => {
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
-  const [error, setError] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchRoleID = async () => {
       const token = document.cookie.split('=')[1];
-      console.log(">>>check token:", token)
       let response = await axios.post('http://localhost:3000/verifyToken', { data: { token: token } });
-      console.log(">>>check response: ", response.data)
-      const roleID = response.data.roleID;
-      console.log(">>roleID: ", roleID);
-      if (roleID === rest.roleID) {
+      const retrievedRoleID = response.data.roleID;
+      console.log(">>>retrieved roled ID: ", retrievedRoleID);
+      console.log(">>>role ID requested: ", roleID);
+      if (retrievedRoleID === roleID) {
         setAuthenticated(true);
       } else {
         setAuthenticated(false);
@@ -24,22 +23,17 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
     };
 
     fetchRoleID();
-  }, [rest.roleID]);
+  }, [roleID]);
 
   if (loading) {
     return <div>Forbidden...</div>;
   }
 
-  if (error) {
-    console.error("Error:", error);
-    return <Navigate to="/login" />;
-  }
-
   if (!authenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  return <Route {...rest} element={<Element />} />;
+  return children;
 };
 
 export default PrivateRoute;
