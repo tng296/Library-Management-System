@@ -304,10 +304,6 @@ app.post('/verifyToken', async (req, res) => {
     }
 });
 
-app.post('/logout', (req, res) => {
-    res.clearCookie('token');
-    res.status(200).json({ success: true });
-})
 
 
 

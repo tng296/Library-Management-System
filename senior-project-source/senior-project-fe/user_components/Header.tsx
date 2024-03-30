@@ -4,8 +4,19 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Cookies from 'universal-cookie';
 
 const Header: React.FC = (props) => {
+
+    const handleLogout = async () => {
+        const token = document.cookie.split('=')[1];
+        console.log(">>>token at logout:", token);
+        const cookies = new Cookies();
+        cookies.remove('token', { path: '/' });
+        toast.success('Logout successful');
+    }
+
     return (
         <div>
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -43,7 +54,7 @@ const Header: React.FC = (props) => {
                                     </Link>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item>
-                                    <button type="submit">Logout</button>
+                                    <Link to="/" className="nav-link" onClick={handleLogout}>Logout</Link>
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
