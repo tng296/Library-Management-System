@@ -10,6 +10,11 @@ import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
 import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
 import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
 import Footer from '../senior-project-fe/user_components/Footer.tsx';
+import MemberIntroPage from '../senior-project-fe/pages/MemberIntroPage.tsx';
+import AdminRegisterPage from '../senior-project-fe/pages/AdminRegisterPage.tsx';
+import MoviePage from '../senior-project-fe/pages/MoviePage.tsx';
+import PassportPage from '../senior-project-fe/pages/PassportPage.tsx';
+import SimpleBookSearch from '../senior-project-fe/pages/SimpleBookSearch.tsx';
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoute from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-be/middleware/PrivateRoute.jsx';
@@ -29,15 +34,18 @@ function App() {
     createRoutesFromElements(
       <Route path="/">
         <Route index element={<LandingPage />}></Route>
+        <Route path="/login" element={<AdminLoginPage />}></Route>
         <Route element={<PageLayout />}>
-          <Route path="/booklist" element={<TableBook />}></Route>
-          <Route path="/login" element={<AdminLoginPage />}></Route>
-          <Route path="/admindashboard" element={<PrivateRoute roleID={1}><AdminDashboard /></PrivateRoute>} />
-          <Route path="/memberdashboard" element={<PrivateRoute roleID={1}><MemberDashboard /></PrivateRoute>} />
-          <Route path="/memberlist" element={<PrivateRoute roleID={1}><TableUsers /></PrivateRoute>} />
-          <Route path="/staffdashboard" element={<StaffDashboard />}></Route>
-          <Route path="/studyroom" element={<StudyRoom />}></Route>
-          <Route path="/booksearch" element={<SearchBookPage />}></Route>
+          <Route path="/member-introduction" element={<MemberIntroPage />}></Route>
+          <Route path="/simplesearch" element={<SimpleBookSearch />}></Route>
+          <Route path="/passport" element={<PassportPage />}></Route>
+          <Route path="/booklist" element={<PrivateRoute roleID={[1, 2]}><TableBook /></PrivateRoute>} />
+          <Route path="/admindashboard" element={<PrivateRoute roleID={[1]}><AdminDashboard /></PrivateRoute>} />
+          <Route path="/memberdashboard" element={<PrivateRoute roleID={[1]}><MemberDashboard /></PrivateRoute>} />
+          <Route path="/memberlist" element={<PrivateRoute roleID={[1, 2]}><TableUsers /></PrivateRoute>} />
+          <Route path="/staffdashboard" element={<PrivateRoute roleID={[2]}><StaffDashboard /></PrivateRoute>} />
+          <Route path="/studyroom" element={<PrivateRoute roleID={[1, 2]}><StudyRoom /></PrivateRoute>} />
+          <Route path="/booksearch" element={<PrivateRoute roleID={[1, 2, 3]}><SearchBookPage /></PrivateRoute>} />
           <Route path="*" element={<p>Page under construction</p>} />
         </Route>
       </Route>

@@ -90,6 +90,15 @@ const AdminDashboard: React.FC = () => {
                         <span>Personal Info</span>
                     </Link>
                 </div>
+                <div className="col-sm text-center">
+                    <Link
+                        to="/booksearch"
+                        className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
+                    >
+                        <Book className="mb-2" size={48} />
+                        <span>Book Transaction</span>
+                    </Link>
+                </div>
             </div>
         </div>
     );

@@ -212,8 +212,8 @@ app.post('/login', (req, res) => {
                 res.status(500).json({ error: 'Failed to login' });
             }
             else if (checkPass) {
-                let token = CreateToken({ roleID: results[0].roleID });
-                res.status(200).json({ roleID: results[0].roleID, token: token });
+                let token = CreateToken({ roleID: results[0].roleID, email: email });
+                res.status(200).json({ roleID: results[0].roleID, token: token, email: email });
             } else {
                 res.status(500).json({ error: 'Failed to login' });
             }
@@ -303,8 +303,6 @@ app.post('/verifyToken', async (req, res) => {
         res.status(500).json({ error: 'Failed to verify token' });
     }
 });
-
-
 
 
 app.listen(port, () => {

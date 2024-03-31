@@ -7,13 +7,15 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 
-const Header: React.FC = (props) => {
+const Header: React.FC = () => {
 
+    const getEmail = localStorage.getItem('email');
+    const email = getEmail?.split('@')[0];
     const handleLogout = async () => {
-        const token = document.cookie.split('=')[1];
-        console.log(">>>token at logout:", token);
+        localStorage.removeItem('email');
         const cookies = new Cookies();
         cookies.remove('token', { path: '/' });
+        cookies.remove('email', { path: '/' });
         toast.success('Logout successful');
     }
 
@@ -30,7 +32,7 @@ const Header: React.FC = (props) => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto" activeKey="/users">
                             <Link to="/member-introduction" className="nav-link">Member</Link>
-                            <Link to="/book-search" className="nav-link">Book</Link>
+                            <Link to="/simplesearch" className="nav-link">Book</Link>
                             <NavDropdown title="Services" id="basic-nav-dropdown">
                                 <NavDropdown.Item >
                                     <Link to="/passport" className="nav-link">Citizenships & Passports</Link>
@@ -47,7 +49,7 @@ const Header: React.FC = (props) => {
                             </NavDropdown>
                         </Nav>
                         <Nav className="ml-left">
-                            <NavDropdown title="Hello" id="basic-nav-dropdown">
+                            <NavDropdown title={`Hello, ${email}`} id="basic-nav-dropdown">
                                 <NavDropdown.Item>
                                     <Link to="/login" className="nav-link">
                                         Personal Info

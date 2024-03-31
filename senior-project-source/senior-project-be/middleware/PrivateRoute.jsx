@@ -10,11 +10,12 @@ const PrivateRoute = ({ children, roleID }) => {
   useEffect(() => {
     const fetchRoleID = async () => {
       const token = document.cookie.split('=')[1];
+      console.log("check what is inside cookie: ", document.cookie)
       let response = await axios.post('http://localhost:3000/verifyToken', { data: { token: token } });
       const retrievedRoleID = response.data.roleID;
       console.log(">>>retrieved roled ID: ", retrievedRoleID);
       console.log(">>>role ID requested: ", roleID);
-      if (retrievedRoleID === roleID) {
+      if (roleID.includes(retrievedRoleID)) {
         setAuthenticated(true);
       } else {
         setAuthenticated(false);

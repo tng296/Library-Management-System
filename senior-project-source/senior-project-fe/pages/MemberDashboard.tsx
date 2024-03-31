@@ -13,7 +13,7 @@ const MemberDashboard: React.FC = () => {
             <div className="row">
                 <div className="col-sm text-center">
                     <Link
-                        to="/books"
+                        to="/booksearch"
                         className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
                     >
                         <Book className="mb-2" size={48} />
@@ -29,6 +29,16 @@ const MemberDashboard: React.FC = () => {
                         <span>Study Room</span>
                     </Link>
                 </div>
+                <div className="col-sm text-center">
+                    <Link
+                        to="/booklist"
+                        className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
+                    >
+                        <Book className="mb-2" size={48} />
+                        <span>Book</span>
+                    </Link>
+                </div>
+
             </div>
             <div className="row mt-3">
                 <div className="col-sm text-center">
@@ -43,8 +53,7 @@ const MemberDashboard: React.FC = () => {
                 <div className="col-sm text-center">
                     <Link
                         to="/personal-info"
-                        className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
-                    >
+                        className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center">
                         <CalendarCheck className="mb-2" size={48} />
                         <span>Personal Info</span>
                     </Link>
