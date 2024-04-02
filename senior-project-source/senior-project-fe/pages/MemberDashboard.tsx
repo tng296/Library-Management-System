@@ -29,16 +29,6 @@ const MemberDashboard: React.FC = () => {
                         <span>Study Room</span>
                     </Link>
                 </div>
-                <div className="col-sm text-center">
-                    <Link
-                        to="/booklist"
-                        className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
-                    >
-                        <Book className="mb-2" size={48} />
-                        <span>Book</span>
-                    </Link>
-                </div>
-
             </div>
             <div className="row mt-3">
                 <div className="col-sm text-center">

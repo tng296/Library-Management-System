@@ -38,7 +38,7 @@ const AdminLoginPage: React.FC = () => {
                 navigate(`/StaffDashboard`);
             }
             else if (res.data.roleID === 3) {
-                navigate(`/MemberDashboard`);
+                navigate(`/memberdashboard`);
             }
             else {
                 alert('Invalid credentials');

@@ -304,6 +304,29 @@ app.post('/verifyToken', async (req, res) => {
     }
 });
 
+app.post('/personal', (req, res) => {
+    const { getEmail } = req.body.data;
+    const connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'thanhtung0709',
+        database: 'LIBRARY'
+    });
+    connection.execute(
+        'SELECT * FROM Member WHERE email = ?', [getEmail],
+        function (err, results, fields) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error: 'Failed to retrieve personal info' });
+            } else {
+                console.log('Retrieve personal info successfully');
+                res.status(200).json({ results });
+            }
+        }
+    )
+
+});
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

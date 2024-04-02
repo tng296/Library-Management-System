@@ -51,7 +51,7 @@ const Header: React.FC = () => {
                         <Nav className="ml-left">
                             <NavDropdown title={`Hello, ${email}`} id="basic-nav-dropdown">
                                 <NavDropdown.Item>
-                                    <Link to="/login" className="nav-link">
+                                    <Link to="/personal-info" className="nav-link">
                                         Personal Info
                                     </Link>
                                 </NavDropdown.Item>

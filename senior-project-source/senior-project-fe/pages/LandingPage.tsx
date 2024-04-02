@@ -138,7 +138,6 @@ const LandingPage: React.FC = () => {
             {/* This is footer */}
             <div className="fixed-bottom" >
                 <footer className="main-footer">
-                    <hr />
                     <div className="container">
                         <div className="row">
                             <div className="col">

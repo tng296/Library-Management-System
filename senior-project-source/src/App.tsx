@@ -11,8 +11,8 @@ import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
 import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
 import Footer from '../senior-project-fe/user_components/Footer.tsx';
 import MemberIntroPage from '../senior-project-fe/pages/MemberIntroPage.tsx';
-import AdminRegisterPage from '../senior-project-fe/pages/AdminRegisterPage.tsx';
 import MoviePage from '../senior-project-fe/pages/MoviePage.tsx';
+import PersonalInfo from '../senior-project-fe/pages/PersonalInfo.tsx';
 import PassportPage from '../senior-project-fe/pages/PassportPage.tsx';
 import SimpleBookSearch from '../senior-project-fe/pages/SimpleBookSearch.tsx';
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements, Outlet } from 'react-router-dom';
@@ -41,11 +41,13 @@ function App() {
           <Route path="/passport" element={<PassportPage />}></Route>
           <Route path="/booklist" element={<PrivateRoute roleID={[1, 2]}><TableBook /></PrivateRoute>} />
           <Route path="/admindashboard" element={<PrivateRoute roleID={[1]}><AdminDashboard /></PrivateRoute>} />
-          <Route path="/memberdashboard" element={<PrivateRoute roleID={[1]}><MemberDashboard /></PrivateRoute>} />
+          <Route path="/memberdashboard" element={<PrivateRoute roleID={[3]}><MemberDashboard /></PrivateRoute>} />
           <Route path="/memberlist" element={<PrivateRoute roleID={[1, 2]}><TableUsers /></PrivateRoute>} />
           <Route path="/staffdashboard" element={<PrivateRoute roleID={[2]}><StaffDashboard /></PrivateRoute>} />
           <Route path="/studyroom" element={<PrivateRoute roleID={[1, 2]}><StudyRoom /></PrivateRoute>} />
           <Route path="/booksearch" element={<PrivateRoute roleID={[1, 2, 3]}><SearchBookPage /></PrivateRoute>} />
+          <Route path="/personal-info" element={<PrivateRoute roleID={[1, 2, 3]}><PersonalInfo /></PrivateRoute>} />
+          <Route path='/movie' element={<MoviePage />} />
           <Route path="*" element={<p>Page under construction</p>} />
         </Route>
       </Route>
