@@ -31,7 +31,7 @@ const AdminLoginPage: React.FC = () => {
         const res = await axios.post('http://localhost:3000/login', { data: { email: login.email, password: login.password } });
         if (res && res.data) {
             localStorage.setItem('email', res.data.email);
-            setCookie('token', res.data.token, { path: "/" });
+            setCookie('token', res.data.token);
             if (res.data.roleID === 1) {
                 navigate(`/AdminDashboard`);
             } else if (res.data.roleID === 2) {
@@ -48,20 +48,21 @@ const AdminLoginPage: React.FC = () => {
 
     return (
         <div className="login-container">
-            <h1>Login</h1>
             <form action="">
+                <h1 className="login-title">Login</h1>
                 <div className="form-control">
                     <input onChange={handleLogin} type="text" placeholder="email" name="email" />
                 </div>
-                <div>
+                <div className="form-control">
                     <input onChange={handleLogin} type="text" placeholder="password" name="password" />
                 </div>
-                <button onClick={submitLoginCredentials} type="submit">Login</button>
+                <div className="submit-button-container">
+                    <button onClick={submitLoginCredentials} type="submit">Login</button>
+                </div>
                 <div className="register-link">
                     <p>Don't have an account? <a href="/register">Register</a></p>
                 </div>
             </form>
-
         </div>
     );
 };

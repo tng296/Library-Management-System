@@ -10,8 +10,12 @@ const PrivateRoute = ({ children, roleID }) => {
   useEffect(() => {
     const fetchRoleID = async () => {
       const token = document.cookie.split('=')[1];
-      let response = await axios.post('http://localhost:3000/verifyToken', { data: { token: token } });
+      const cleanToken = token.replace("; _xsrf", '');
+      console.log(">>>check req token: ", cleanToken);
+      console.log(">>>check req roldID: ", roleID);
+      let response = await axios.post('http://localhost:3000/verifyToken', { data: { token: cleanToken } });
       const retrievedRoleID = response.data.roleID;
+      console.log(">>>check res roldID: ", retrievedRoleID);
       if (roleID.includes(retrievedRoleID)) {
         setAuthenticated(true);
       } else {
@@ -28,6 +32,7 @@ const PrivateRoute = ({ children, roleID }) => {
   }
 
   if (!authenticated) {
+    alert("You are not authorized to access this page!");
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 

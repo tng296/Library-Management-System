@@ -22,7 +22,7 @@ const MemberDashboard: React.FC = () => {
                 </div>
                 <div className="col-sm text-center">
                     <Link
-                        to="/study-room"
+                        to="/studyroom"
                         className="text-decoration-none text-dark d-flex flex-column align-items-center justify-content-center"
                     >
                         <DoorOpen className="mb-2" size={48} />

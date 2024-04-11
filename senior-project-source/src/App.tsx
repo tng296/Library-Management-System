@@ -9,8 +9,8 @@ import AdminDashboard from '../senior-project-fe/pages/AdminDashboard.tsx';
 import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
 import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
 import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
-import Footer from '../senior-project-fe/user_components/Footer.tsx';
 import MemberIntroPage from '../senior-project-fe/pages/MemberIntroPage.tsx';
+import Footer from '../senior-project-fe/user_components/footer.tsx';
 import MoviePage from '../senior-project-fe/pages/MoviePage.tsx';
 import PersonalInfo from '../senior-project-fe/pages/PersonalInfo.tsx';
 import PassportPage from '../senior-project-fe/pages/PassportPage.tsx';

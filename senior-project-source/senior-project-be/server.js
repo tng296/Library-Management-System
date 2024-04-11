@@ -214,6 +214,7 @@ app.post('/login', (req, res) => {
             else if (checkPass) {
                 let token = CreateToken({ roleID: results[0].roleID, email: email });
                 res.status(200).json({ roleID: results[0].roleID, token: token, email: email });
+                console.log(">>>token in server: ", token)
             } else {
                 res.status(500).json({ error: 'Failed to login' });
             }
@@ -292,9 +293,10 @@ app.put('/checkinbook', (req, res) => {
 
 app.post('/verifyToken', async (req, res) => {
     const { token } = req.body.data;
-    console.log(">>>check token in server :", token);
+    const cleanedToken = token.replace('; _sxrf', ''); // Remove _sxrf from the token
+    console.log(">>>check token in server :", cleanedToken);
     try {
-        let decodedToken = await VerifyToken(token);
+        let decodedToken = VerifyToken(cleanedToken);
         console.log(">>>check decoded token: ", decodedToken);
         res.status(200).json(decodedToken);
     }
