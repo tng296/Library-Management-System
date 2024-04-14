@@ -17,13 +17,15 @@ const AdminLoginPage: React.FC = () => {
         password: ''
     });
     const [cookies, setCookie] = useCookies(['token']);
-
     const navigate = useNavigate();
 
     const handleLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLogin({ ...login, [e.target.name]: e.target.value });
     }
 
+    const useCookiesDummy = () => {
+        console.log('cookies', cookies);
+    }
     const submitLoginCredentials = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         const cookies = new Cookies();
@@ -32,6 +34,7 @@ const AdminLoginPage: React.FC = () => {
         if (res && res.data) {
             localStorage.setItem('email', res.data.email);
             setCookie('token', res.data.token);
+            useCookiesDummy();
             if (res.data.roleID === 1) {
                 navigate(`/AdminDashboard`);
             } else if (res.data.roleID === 2) {

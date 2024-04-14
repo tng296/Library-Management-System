@@ -4,15 +4,14 @@ import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const ModalAddNew: React.FC = (props) => {
-    interface ModalAddNewProps {
-        show: boolean;
-        handleClose: () => void;
-        handleAddingNewUser: (user: any) => void;
-    }
+interface ModalAddNewProps {
+    show: boolean;
+    handleClose: () => void;
+    handleAddingNewUser: (user: any) => void;
+}
+const ModalAddNew: React.FC<ModalAddNewProps> = (props) => {
 
     const { show, handleClose, handleAddingNewUser } = props as ModalAddNewProps;
-
     const [email, setEmail] = useState<string>('');
     const [fName, setFirstName] = useState<string>('');
     const [lName, setLastName] = useState<string>('');

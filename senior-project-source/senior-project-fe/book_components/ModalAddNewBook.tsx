@@ -3,13 +3,15 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
+interface ModalAddNewProps {
+    show: boolean;
+    handleClose: () => void;
+    handleAddingNewBook: (Book: any) => void;
+}
 
-const ModalAddNewBook: React.FC = (props) => {
-    interface ModalAddNewProps {
-        show: boolean;
-        handleClose: () => void;
-        handleAddingNewBook: (Book: any) => void;
-    }
+
+const ModalAddNewBook: React.FC<ModalAddNewProps> = (props) => {
+
 
     const { show, handleClose, handleAddingNewBook } = props as ModalAddNewProps;
 

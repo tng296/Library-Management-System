@@ -10,7 +10,6 @@ import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
 import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
 import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
 import MemberIntroPage from '../senior-project-fe/pages/MemberIntroPage.tsx';
-import Footer from '../senior-project-fe/user_components/footer.tsx';
 import MoviePage from '../senior-project-fe/pages/MoviePage.tsx';
 import PersonalInfo from '../senior-project-fe/pages/PersonalInfo.tsx';
 import PassportPage from '../senior-project-fe/pages/PassportPage.tsx';
@@ -55,19 +54,18 @@ function App() {
 
   return (
     <div className="app-container">
-      <RouterProvider router={customRouter}>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </RouterProvider>
+      <RouterProvider router={customRouter} />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

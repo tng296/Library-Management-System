@@ -4,7 +4,14 @@ import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const handleReservationModal: React.FC = (props) => {
+interface ModalHandleReservationProps {
+    show: boolean,
+    handleClose: () => void,
+    room: any,
+    handleReservationFromModal: (data: any) => void,
+}
+
+const handleReservationModal: React.FC<ModalHandleReservationProps> = (props) => {
     const { show, handleClose, room, handleReservationFromModal } = props as {
         show: boolean;
         handleClose: () => void;
@@ -15,7 +22,7 @@ const handleReservationModal: React.FC = (props) => {
     const [email, setEmail] = useState('');
 
     const handleMemberID = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMemberID(event.target.value);
+        setEmail(event.target.value);
     };
 
     const handleReservation = async () => {

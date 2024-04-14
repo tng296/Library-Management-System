@@ -4,8 +4,14 @@ import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const ModalEditUser: React.FC = (props) => {
-    const { show, handleClose, userEdit, handleEditUserfromModal, data } = props as { show: boolean, handleClose: () => void, userEdit: any, handleEditUserfromModal: (data: any) => void, data: any };
+interface ModalEditUserProps {
+    show: boolean,
+    handleClose: () => void,
+    userEdit: any,
+    handleEditUserfromModal: (data: any) => void
+}
+const ModalEditUser: React.FC<ModalEditUserProps> = (props) => {
+    const { show, handleClose, userEdit, handleEditUserfromModal } = props as { show: boolean, handleClose: () => void, userEdit: any, handleEditUserfromModal: (data: any) => void };
 
     const [email, setEmail] = useState<string>('');
     const [status, setStatus] = useState<string>('');

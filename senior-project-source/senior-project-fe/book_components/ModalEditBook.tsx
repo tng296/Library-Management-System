@@ -4,9 +4,18 @@ import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const ModalEditBook: React.FC = (props) => {
-    const { show, handleClose, bookEdit, handleEditBookfromModal, data } = props as {
-        show: boolean, handleClose: () => void,
+interface ModalAddNewBookProps {
+    show: boolean,
+    handleClose: () => void,
+    bookEdit: any,
+    handleEditBookfromModal: (data: any) => void,
+    data?: any
+}
+
+const ModalEditBook: React.FC<ModalAddNewBookProps> = (props) => {
+    const { show, handleClose, bookEdit, handleEditBookfromModal } = props as {
+        show: any,
+        handleClose: () => void,
         bookEdit: any,
         handleEditBookfromModal: (data: any) => void,
         data: any

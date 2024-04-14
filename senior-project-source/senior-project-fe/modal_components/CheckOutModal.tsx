@@ -4,7 +4,14 @@ import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const CheckOutModal: React.FC = (props) => {
+interface CheckOutModalProps {
+    show: boolean,
+    handleClose: () => void,
+    bookSearch: any,
+    handleCheckOutFromModal: (data: any) => void
+}
+
+const CheckOutModal: React.FC<CheckOutModalProps> = (props) => {
     const { show, handleClose, bookSearch, handleCheckOutFromModal } = props as {
         show: boolean, handleClose: () => void,
         bookSearch: any,

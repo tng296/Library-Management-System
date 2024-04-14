@@ -13,7 +13,6 @@ interface IStudyRoom {
 const StudyRoom: React.FC = () => {
 
     const [studyroom, setStudyRoom] = useState<IStudyRoom[]>([]);
-    const [roomReservation, setRoomReservation] = useState<IStudyRoom>({} as IStudyRoom);
     const [isShownReservationModal, setIsShownReservationModal] = useState(false);
 
     useEffect(() => {
@@ -21,23 +20,13 @@ const StudyRoom: React.FC = () => {
     }, []);
 
     const getStudyRoom = async () => {
-        let res = await axios.get('http://localhost:3000/fetchStudyRoom').then((res) => {
+        await axios.get('http://localhost:3000/fetchStudyRoom').then((res) => {
             setStudyRoom(res.data);
         }).catch(err => console.log(err));
     }
 
-    const handleReservationEvent = (room: IStudyRoom) => {
-        const reservationDone = [...studyroom];
-        const index = reservationDone.findIndex((item) => item.roomID === room.roomID);
-        if (index !== -1) {
-            reservationDone[index] = room;
-        }
-        setStudyRoom(reservationDone);
-    }
-
-    const handleReservation = (room: IStudyRoom) => {
+    const handleReservation = () => {
         setIsShownReservationModal(true);
-        setRoomReservation(room);
     }
 
     const handleClose = () => {
@@ -70,7 +59,7 @@ const StudyRoom: React.FC = () => {
                                 <td>{room.availability}</td>
                                 <td>{room.email}</td>
                                 <td>
-                                    <button className="btn btn-primary mx-3" onClick={() => handleReservation(room)}>Reserve</button>
+                                    <button className="btn btn-primary mx-3" onClick={() => handleReservation()}>Reserve</button>
                                     <button className="btn btn-warning" >Cancel</button>
                                 </td>
                             </tr>
@@ -79,7 +68,7 @@ const StudyRoom: React.FC = () => {
                 </tbody>
             </Table >
 
-            <HandleReservationModal show={isShownReservationModal} handleClose={handleClose} />
+            <HandleReservationModal show={isShownReservationModal} handleClose={handleClose} room={studyroom[0]} handleReservationFromModal={() => { }} />
         </div >
     )
 }

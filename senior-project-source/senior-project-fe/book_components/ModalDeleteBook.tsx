@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const ModalDeleteBook: React.FC = (props) => {
+interface ModalDeleteBookProps {
+    show: boolean,
+    handleClose: () => void,
+    bookDelete: any,
+    handleDeleteBookFromModal: (data: any) => void,
+}
+
+
+const ModalDeleteBook: React.FC<ModalDeleteBookProps> = (props) => {
     const { show, handleClose, bookDelete, handleDeleteBookFromModal } = props as {
         show: boolean,
         handleClose: () => void, bookDelete: any, handleDeleteBookFromModal: (data: any) => void

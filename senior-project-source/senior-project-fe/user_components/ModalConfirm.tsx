@@ -4,7 +4,15 @@ import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const ModalConfirm: React.FC = (props) => {
+interface ModalConfirmProps {
+    show: boolean,
+    handleClose: () => void,
+    userDelete: any,
+    handleDeleteUserFromModal: (data: any) => void,
+
+}
+
+const ModalConfirm: React.FC<ModalConfirmProps> = (props) => {
     const { show, handleClose, userDelete, handleDeleteUserFromModal } = props as {
         show: boolean,
         handleClose: () => void, userDelete: any, handleDeleteUserFromModal: (data: any) => void

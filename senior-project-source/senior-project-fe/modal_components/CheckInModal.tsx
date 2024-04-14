@@ -4,7 +4,15 @@ import Modal from 'react-bootstrap/Modal'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const CheckInModal: React.FC = (props) => {
+interface CheckInModalProps {
+    show: boolean,
+    handleClose: () => void,
+    bookSearch: any,
+    handleCheckInFromModal: (data: any) => void,
+
+}
+
+const CheckInModal: React.FC<CheckInModalProps> = (props) => {
     const { show, handleClose, bookSearch, handleCheckInFromModal } = props as {
         show: boolean, handleClose: () => void,
         bookSearch: any,

@@ -19,6 +19,8 @@ interface User {
     password?: string;
 }
 
+
+
 const TableUsers: React.FC = () => {
     const [listUser, setListUser] = useState<User[]>([]);
 
@@ -73,8 +75,6 @@ const TableUsers: React.FC = () => {
         cloneListUser = cloneListUser.filter((item) => item.memberID !== user.memberID);
         setListUser(cloneListUser);
     }
-    const handlePageClick = (data: any) => {
-    }
 
     return (
         <>
@@ -84,7 +84,6 @@ const TableUsers: React.FC = () => {
                 </span>
                 <button className="btn btn-primary" onClick={() => setIsShownModalAddNew(true)}>Add New Member</button>
             </div>
-            {/* Table component */}
 
             <Table striped bordered hover>
                 <thead>
