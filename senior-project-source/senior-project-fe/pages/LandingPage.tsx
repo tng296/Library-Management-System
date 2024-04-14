@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import '../styles/LandingPage.css';
+import '../styles/Footer.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

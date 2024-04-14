@@ -54,7 +54,7 @@ const AdminLoginPage: React.FC = () => {
                     <input onChange={handleLogin} type="text" placeholder="email" name="email" />
                 </div>
                 <div className="form-control">
-                    <input onChange={handleLogin} type="text" placeholder="password" name="password" />
+                    <input onChange={handleLogin} type="password" placeholder="password" name="password" />
                 </div>
                 <div className="submit-button-container">
                     <button onClick={submitLoginCredentials} type="submit">Login</button>

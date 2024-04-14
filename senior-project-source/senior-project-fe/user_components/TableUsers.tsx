@@ -32,6 +32,7 @@ const TableUsers: React.FC = () => {
     const [userEdit, setUserEdit] = useState<User>({} as User);
     const [userDelete, setUserDelete] = useState<User>({} as User);
 
+
     const handleClose = () => {
         setIsShownModalAddNew(false);
         setIsShownModalEdit(false);
@@ -71,6 +72,8 @@ const TableUsers: React.FC = () => {
         let cloneListUser = _.cloneDeep(listUser);
         cloneListUser = cloneListUser.filter((item) => item.memberID !== user.memberID);
         setListUser(cloneListUser);
+    }
+    const handlePageClick = (data: any) => {
     }
 
     return (

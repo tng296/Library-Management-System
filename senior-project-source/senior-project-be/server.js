@@ -293,10 +293,9 @@ app.put('/checkinbook', (req, res) => {
 
 app.post('/verifyToken', async (req, res) => {
     const { token } = req.body.data;
-    const cleanedToken = token.replace('; _sxrf', ''); // Remove _sxrf from the token
-    console.log(">>>check token in server :", cleanedToken);
+    console.log(">>>check token in server :", token);
     try {
-        let decodedToken = VerifyToken(cleanedToken);
+        let decodedToken = VerifyToken(token);
         console.log(">>>check decoded token: ", decodedToken);
         res.status(200).json(decodedToken);
     }
