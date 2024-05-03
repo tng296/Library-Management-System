@@ -1,22 +1,22 @@
 import './App.scss'
-import Header from '../senior-project-fe/user_components/header.tsx';
-import StudyRoom from '../senior-project-fe/room_components/Studyroom.tsx';
-import TableUsers from '../senior-project-fe/user_components/TableUsers.tsx';
-import TableBook from '../senior-project-fe/book_components/TableBook.tsx';
-import LandingPage from '../senior-project-fe/pages/LandingPage.tsx';
-import AdminLoginPage from '../senior-project-fe/pages/AdminLoginPage.tsx';
-import AdminDashboard from '../senior-project-fe/pages/AdminDashboard.tsx';
-import MemberDashboard from '../senior-project-fe/pages/MemberDashboard.tsx';
-import StaffDashboard from '../senior-project-fe/pages/StaffDashboard.tsx';
-import SearchBookPage from '../senior-project-fe/pages/BookSearch.tsx'
-import MemberIntroPage from '../senior-project-fe/pages/MemberIntroPage.tsx';
-import MoviePage from '../senior-project-fe/pages/MoviePage.tsx';
-import PersonalInfo from '../senior-project-fe/pages/PersonalInfo.tsx';
-import PassportPage from '../senior-project-fe/pages/PassportPage.tsx';
-import SimpleBookSearch from '../senior-project-fe/pages/SimpleBookSearch.tsx';
+import Header from '../lms-fe/user_components/Header.tsx';
+import StudyRoom from '../lms-fe/room_components/Studyroom.tsx';
+import TableUsers from '../lms-fe/user_components/TableUsers.tsx';
+import TableBook from '../lms-fe/book_components/TableBook.tsx';
+import LandingPage from '../lms-fe/pages/LandingPage.tsx';
+import AdminLoginPage from '../lms-fe/pages/AdminLoginPage.tsx';
+import AdminDashboard from '../lms-fe/pages/AdminDashboard.tsx';
+import MemberDashboard from '../lms-fe/pages/MemberDashboard.tsx';
+import StaffDashboard from '../lms-fe/pages/StaffDashboard.tsx';
+import SearchBookPage from '../lms-fe/pages/BookSearch.tsx'
+import MemberIntroPage from '../lms-fe/pages/MemberIntroPage.tsx';
+import MoviePage from '../lms-fe/pages/MoviePage.tsx';
+import PersonalInfo from '../lms-fe/pages/PersonalInfo.tsx';
+import PassportPage from '../lms-fe/pages/PassportPage.tsx';
+import SimpleBookSearch from '../lms-fe/pages/SimpleBookSearch.tsx';
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import PrivateRoute from '/Users/vincentnguyen/Developer/Senior-Project/senior-project-source/senior-project-be/middleware/PrivateRoute.jsx';
+import PrivateRoute from '/Users/vincentnguyen/Developer/Senior-Project/lms-source/lms-be/middleware/PrivateRoute.jsx';
 
 const PageLayout = () => {
   return (
